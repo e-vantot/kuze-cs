@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="kuze.AdminLogin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="kuze.User_Layer_Interface.UserLogin" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Login</title>
+    <title>User Login</title>
     <style>
         body {
             background-color: #fff;
@@ -83,9 +83,9 @@
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="Images/kuze-final.png" alt="Logo" />
+            <img src="/Images/kuze-logo.png" alt="Logo" />
         </div>
-        <h2>Admin Login</h2>
+        <h2>User Login</h2>
         <form runat="server">
             <div class="form-group">
                 <label for="txtUsername">Username:</label>
