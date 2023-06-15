@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Payment Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             box-sizing: border-box;
@@ -52,9 +53,9 @@
             padding: 10px;
         }
 
-        .payment-option.selected {
-            background-color: #d3d3d3;
-        }
+            .payment-option.selected {
+                background-color: #d3d3d3;
+            }
 
         .payment-icon {
             width: 40px;
@@ -114,18 +115,43 @@
             margin: 10px 0;
             cursor: pointer;
         }
+
+        @media screen and (max-width: 768px) {
+
+            .container {
+                flex-direction: column;
+            }
+
+            .left-content,
+            .right-content {
+                padding: 20px;
+                flex: none;
+            }
+
+            .right-content {
+                order: -1; /* Move the right content to the top */
+            }
+
+            #title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1 id="title">kuzé by ekoism</h1>
-    
+
     <div class="container">
         <!-- Left Content -->
         <div class="left-content">
             <h2 class="header">Payment</h2>
-            <div class="payment-option" onclick="selectPaymentOption(this)"><img class="payment-icon" src="images/card.png" alt="Card"></div>
-            <div class="payment-option" onclick="selectPaymentOption(this)"><img class="payment-icon" src="images/paypal.png" alt="PayPal"></div>
-            <div class="payment-option" onclick="selectPaymentOption(this)"><img class="payment-icon" src="images/applepay.png" alt="Apple Pay"></div>
+            <div class="payment-option" onclick="selectPaymentOption(this)">
+                <img class="payment-icon" src="images/card.png" alt="Card"></div>
+            <div class="payment-option" onclick="selectPaymentOption(this)">
+                <img class="payment-icon" src="images/paypal.png" alt="PayPal"></div>
+            <div class="payment-option" onclick="selectPaymentOption(this)">
+                <img class="payment-icon" src="images/applepay.png" alt="Apple Pay"></div>
 
             <h2 class="header">Shipping</h2>
             <select class="text-input">

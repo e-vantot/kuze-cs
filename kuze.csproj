@@ -130,9 +130,13 @@
     <Content Include="images\card.png" />
     <Content Include="images\cross.png" />
     <Content Include="images\paypal.png" />
+    <Content Include="images\searchbackground.jpg" />
     <Content Include="images\truck.png" />
     <Content Include="images\tshirt.jpg" />
+    <Content Include="images\unsucessfulpayment.png" />
     <Content Include="payment.aspx" />
+    <Content Include="paymentSuccess.aspx" />
+    <Content Include="paymentUnsuccessful.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -161,6 +165,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="search.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -208,7 +213,28 @@
     <Compile Include="payment.aspx.designer.cs">
       <DependentUpon>payment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="paymentSuccess.aspx.cs">
+      <DependentUpon>paymentSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paymentSuccess.aspx.designer.cs">
+      <DependentUpon>paymentSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paymentUnsuccessful.aspx.cs">
+      <DependentUpon>paymentUnsuccessful.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paymentUnsuccessful.aspx.designer.cs">
+      <DependentUpon>paymentUnsuccessful.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
