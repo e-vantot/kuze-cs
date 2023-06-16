@@ -129,7 +129,7 @@
             }
 
             .right-content {
-                order: -1; /* Move the right content to the top */
+                order: -1;
             }
 
             #title {

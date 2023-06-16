@@ -11,7 +11,7 @@
         
         #header {
             color: #393E4E;
-            font-size: 36px; /* Made header text bigger */
+            font-size: 36px;
             text-align: center;
             padding: 20px;
         }
@@ -46,13 +46,13 @@
         }
 
         #payment-failed-text {
-            font-size: 24px; /* Made text bigger */
+            font-size: 24px;
             font-weight: bold;
             color: #808080;
         }
 
         #instruction-text, #or-text, #save-text {
-            font-size: 18px; /* Made text bigger */
+            font-size: 18px;
             color: #808080;
             margin: 10px 0;
         }
@@ -65,17 +65,17 @@
         #try-again-button {
             background-color: #626262;
             color: #FFFFFF;
-            padding: 12px 24px; /* Increased padding for bigger text */
+            padding: 12px 24px;
             margin: 10px;
             border-radius: 5px;
-            font-size: 16px; /* Made text bigger */
+            font-size: 16px;
         }
 
         #save-to-cart-button {
-            padding: 12px 24px; /* Increased padding for bigger text */
+            padding: 12px 24px;
             margin: 10px;
             border-radius: 5px;
-            font-size: 16px; /* Made text bigger */
+            font-size: 16px;
         }
     </style>
 </head>
@@ -84,7 +84,6 @@
         <div id="header">kuzé by ekoism</div>
         <div id="line"></div>
         <div id="container">
-            <!-- Moved image to be inside the grey rectangle but outside the white rectangle -->
             <img id="payment-failed-image" src="images/unsucessfulpayment.png" alt="Image">
             <div id="message-container">
                 <div id="payment-failed-text">Payment Failed</div>

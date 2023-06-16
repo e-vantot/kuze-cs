@@ -125,7 +125,6 @@
             margin-bottom: 20px;
         }
 
-        /* Media queries for mobile view */
         @media screen and (max-width: 768px) {
             #container {
                 width: 100%;

@@ -112,7 +112,6 @@
             color: blue;
         }
 
-        /* The Modal (background) */
         .modal {
             display: none;
             position: fixed;
@@ -124,7 +123,6 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
-        /* Modal Content */
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -135,7 +133,7 @@
         }
 
             .modal-content div {
-                margin: 8px 0; /* This adds 8px margin to the top and bottom of each div inside modal-content */
+                margin: 8px 0;
             }
 
 
@@ -211,7 +209,6 @@
         </div>
 
         <div class="content">
-            <!-- Refine results -->
             <div class="sidebar">
                 <div>Refine your results</div>
                 <div>Category</div>
@@ -253,9 +250,8 @@
         </div>
     </form>
 
-    <!-- The Modal -->
+    <!-- popup(modal) -->
     <div id="myModal" class="modal">
-        <!-- Modal content -->
         <div class="modal-content">
             <div class="left">
                 <img src="images/tshirt.jpg" alt="product name" style="max-width: 100%;">
@@ -307,7 +303,7 @@
             modal.style.display = "block";
         }
 
-        // Increment quantity
+        // increase quantity
         function incrementQuantity() {
             var quantityInput = document.getElementById("quantity");
             var quantity = parseInt(quantityInput.value, 10);
