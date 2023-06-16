@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="search.aspx.cs" Inherits="kuze.search" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductPage.aspx.cs" Inherits="kuze.ProductPage" %>
 
 <!-- This is a product search page written in HTML and C# -->
 
@@ -228,29 +228,33 @@
             <!-- Products section -->
             <div class="products">
                 <!-- Example Product -->
-                <div class="product">
-                    <img src="images/tshirt.jpg" alt="product name">
+                <div class="product" data-productid="1">
+                    <img src="images/tshirt.jpg" alt="product name" />
                     <div class="product-name">Piqué Biker Jacket</div>
                     <div class="stars">★★★★★</div>
                     <div class="price">$99.99</div>
+                    <asp:HiddenField ID="productIdHiddenField" runat="server" Value="" />
+
                 </div>
-                <div class="product">
-                    <img src="images/tshirt.jpg" alt="product name">
-                    <div class="product-name">Piqué Biker Jacket</div>
+                <div class="product" data-productid="2">
+                    <img src="images/varsityjacket.jpg" alt="product name" />
+                    <div class="product-name">Varsity Jacket</div>
                     <div class="stars">★★★★★</div>
-                    <div class="price">$99.99</div>
+                    <div class="price">$129.99</div>
+
                 </div>
-                <div class="product">
-                    <img src="images/tshirt.jpg" alt="product name">
-                    <div class="product-name">Piqué Biker Jacket</div>
-                    <div class="stars">★★★★★</div>
-                    <div class="price">$99.99</div>
+                <div class="product" data-productid="3">
+                    <img src="images/sexyskirt.jpg" alt="product name" />
+                    <div class="product-name">Sexy Skirt</div>
+                    <div class="stars">★★★★</div>
+                    <div class="price">$39.99</div>
+
                 </div>
-                <div class="product">
-                    <img src="images/tshirt.jpg" alt="product name">
-                    <div class="product-name">Piqué Biker Jacket</div>
-                    <div class="stars">★★★★★</div>
-                    <div class="price">$99.99</div>
+                <div class="product" data-productid="4">
+                    <img src="images/bikini.jpg" alt="product name" />
+                    <div class="product-name">Bikini</div>
+                    <div class="stars">★★★</div>
+                    <div class="price">$15.59</div>
                 </div>
             </div>
         </div>
@@ -260,7 +264,7 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="left">
-                <img src="images/tshirt.jpg" alt="product name" style="max-width: 100%;">
+                <img src="images/tshirt.jpg" alt="product name" style="max-width: 100%;" />
             </div>
             <div class="right">
                 <div class="modal-header">
@@ -268,9 +272,9 @@
                     <span class="close" onclick="document.getElementById('myModal').style.display = 'none'">&times;</span>
                 </div>
                 <div style="font-weight: bold;">Price</div>
-                <input type="text" value="$20.5" readonly>
+                <input type="text" value="$20.5" readonly />
                 <div style="font-weight: bold;">Name</div>
-                <input type="text" value="Piqué Biker Jacket" readonly>
+                <input type="text" value="Piqué Biker Jacket" readonly />
                 <div style="font-weight: bold;">Colour</div>
                 <select class="dropdown">
                     <option selected>Black</option>
@@ -284,9 +288,9 @@
                     <option>Large</option>
                 </select>
                 <div style="font-weight: bold;">Quantity</div>
-                <input id="quantity" class="quantity-input" type="text" value="1" readonly>
+                <input id="quantity" class="quantity-input" type="text" value="1" readonly />
                 <button onclick="incrementQuantity()">+</button>
-                <button class="addToCartButton" onclick="document.getElementById('myModal').style.display = 'none'">Add to Cart</button>
+                <button class="addToCartButton" onclick="AddToCart_Click()">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -303,13 +307,20 @@
         // When the user clicks on a product, open the modal
         for (var i = 0; i < products.length; i++) {
             products[i].onclick = function () {
+                var productName = this.getElementsByClassName("product-name")[0].innerText;
+                var productPrice = this.getElementsByClassName("price")[0].innerText;
+                var productImage = this.getElementsByTagName("img")[0].src;
+
+                var modalImage = modal.getElementsByClassName("left")[0].getElementsByTagName("img")[0];
+                var modalProductName = modal.getElementsByTagName("input")[1];
+                var modalProductPrice = modal.getElementsByTagName("input")[0];
+
+                modalImage.src = productImage;
+                modalProductName.value = productName;
+                modalProductPrice.value = productPrice;
+
                 modal.style.display = "block";
             }
-        }
-
-        // When the user clicks on the product, open the modal
-        product.onclick = function () {
-            modal.style.display = "block";
         }
 
         // Increase quantity

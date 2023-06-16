@@ -127,13 +127,16 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="history.aspx" />
     <Content Include="images\applepay.png" />
+    <Content Include="images\bikini.jpg" />
     <Content Include="images\card.png" />
     <Content Include="images\cross.png" />
     <Content Include="images\paypal.png" />
     <Content Include="images\searchbackground.jpg" />
+    <Content Include="images\sexyskirt.jpg" />
     <Content Include="images\truck.png" />
     <Content Include="images\tshirt.jpg" />
     <Content Include="images\unsucessfulpayment.png" />
+    <Content Include="images\varsityjacket.jpg" />
     <Content Include="payment.aspx" />
     <Content Include="paymentSuccess.aspx" />
     <Content Include="paymentUnsuccessful.aspx" />
@@ -165,7 +168,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="search.aspx" />
+    <Content Include="ProductPage.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -228,12 +231,12 @@
       <DependentUpon>paymentUnsuccessful.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="search.aspx.cs">
-      <DependentUpon>search.aspx</DependentUpon>
+    <Compile Include="ProductPage.aspx.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="search.aspx.designer.cs">
-      <DependentUpon>search.aspx</DependentUpon>
+    <Compile Include="ProductPage.aspx.designer.cs">
+      <DependentUpon>ProductPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -7,11 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace kuze
 {
-    public partial class search : System.Web.UI.Page
+    public partial class ProductPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
     }
 }
