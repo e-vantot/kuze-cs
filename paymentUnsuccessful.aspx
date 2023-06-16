@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
         }
-        
+
         #header {
             color: #393E4E;
             font-size: 36px;
@@ -81,21 +81,34 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <!-- Page header -->
         <div id="header">kuzé by ekoism</div>
         <div id="line"></div>
         <div id="container">
+            <!-- Payment failed image and message container -->
             <img id="payment-failed-image" src="images/unsucessfulpayment.png" alt="Image">
             <div id="message-container">
+                <!-- Payment failed text -->
                 <div id="payment-failed-text">Payment Failed</div>
+                <!-- Instruction for the user -->
                 <div id="instruction-text">Please select another payment method</div>
                 <div id="or-text">or</div>
                 <div id="save-text">save your product to the cart</div>
+                <!-- Buttons section -->
                 <div id="buttons">
-                    <button id="try-again-button">Try again</button>
+                    <!-- Try again button -->
+                    <button id="try-again-button" type="button" onclick="redirectToPaymentPage()">Try again</button>
+                    <!-- Save to cart button -->
                     <button id="save-to-cart-button">Save to cart</button>
                 </div>
             </div>
         </div>
     </form>
+    <script>
+        // Function to redirect to the payment page
+        function redirectToPaymentPage() {
+            window.location.href = "payment.aspx";
+        }
+    </script>
 </body>
 </html>

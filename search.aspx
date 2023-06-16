@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="search.aspx.cs" Inherits="kuze.search" %>
 
+<!-- This is a product search page written in HTML and C# -->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -7,6 +9,8 @@
     <title>Product Search Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        /* CSS styles for the page layout and design */
+
         body,
         html {
             margin: 0;
@@ -197,6 +201,7 @@
 
 <body>
     <form id="form1" runat="server">
+        <!-- Header section -->
         <div id="header">
             <div id="search-container">
                 <input id="search-input" type="text" placeholder="Search for products..." />
@@ -204,11 +209,13 @@
             </div>
         </div>
 
+        <!-- Search results section -->
         <div id="search-results">
             <h2>Search Results</h2>
         </div>
 
         <div class="content">
+            <!-- Sidebar section -->
             <div class="sidebar">
                 <div>Refine your results</div>
                 <div>Category</div>
@@ -218,9 +225,8 @@
                 <a href="#">Dresses</a>
             </div>
 
-            <!-- Products -->
+            <!-- Products section -->
             <div class="products">
-                <!-- Include your product elements here -->
                 <!-- Example Product -->
                 <div class="product">
                     <img src="images/tshirt.jpg" alt="product name">
@@ -250,7 +256,7 @@
         </div>
     </form>
 
-    <!-- popup(modal) -->
+    <!-- Modal (popup) -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="left">
@@ -280,30 +286,33 @@
                 <div style="font-weight: bold;">Quantity</div>
                 <input id="quantity" class="quantity-input" type="text" value="1" readonly>
                 <button onclick="incrementQuantity()">+</button>
-                <div>Delivery</div>
-                <select class="dropdown">
-                    <option selected>J&T</option>
-                    <option>DHL</option>
-                    <option>Fedex</option>
-                </select>
                 <button class="addToCartButton" onclick="document.getElementById('myModal').style.display = 'none'">Add to Cart</button>
             </div>
         </div>
     </div>
 
     <script>
+        // JavaScript code for the functionality of the page
+
         // Get the modal
         var modal = document.getElementById("myModal");
 
-        // Get the product element to open the modal
-        var product = document.getElementsByClassName("product")[0];
+        // Get the product elements to open the modal
+        var products = document.getElementsByClassName("product");
+
+        // When the user clicks on a product, open the modal
+        for (var i = 0; i < products.length; i++) {
+            products[i].onclick = function () {
+                modal.style.display = "block";
+            }
+        }
 
         // When the user clicks on the product, open the modal
         product.onclick = function () {
             modal.style.display = "block";
         }
 
-        // increase quantity
+        // Increase quantity
         function incrementQuantity() {
             var quantityInput = document.getElementById("quantity");
             var quantity = parseInt(quantityInput.value, 10);

@@ -1,11 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="paymentSuccess.aspx.cs" Inherits="kuze.paymentSuccess" %>
 
+<!-- This page displays the order confirmation after a successful payment -->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Order Confirmation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* CSS styles for the page layout and design */
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -125,6 +129,7 @@
             margin-bottom: 20px;
         }
 
+        /* Media query for mobile */
         @media screen and (max-width: 768px) {
             #container {
                 width: 100%;
@@ -167,19 +172,26 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <!-- Page header -->
         <div id="header">kuzé by ekoism</div>
         <div id="line"></div>
         <div id="container">
+            <!-- Thank you message -->
             <div id="thank-you-text">Thank you for your order!</div>
+            <!-- Review text -->
             <div id="review-text">Review your order information below</div>
             <div id="message-container">
+                <!-- Order details -->
                 <div class="order-details">
                     <div id="order-date">20/03/2023</div>
                     <div id="order-number">Order: 1728492</div>
                 </div>
+                <!-- Horizontal line -->
                 <div id="horizontal-line"></div>
+                <!-- Items -->
                 <div id="items">Items</div>
                 <div id="status">Status: Shipping soon</div>
+                <!-- Horizontal line -->
                 <div id="horizontal-line2"></div>
                 <!-- Product details -->
                 <img class="product-image" src="images/tshirt.jpg" alt="Product Image">

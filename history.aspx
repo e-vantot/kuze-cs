@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="history.aspx.cs" Inherits="kuze.history" %>
 
+<!-- This page displays the purchase history of the user -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS styles for the page layout and design */
+
         body, div, span {
             font-family: 'Inter', sans-serif;
             color: #808080;
@@ -110,9 +114,12 @@
 </head>
 <body>
 
+    <!-- Page title -->
     <div class="title">Orders</div>
 
+    <!-- Purchase history section -->
     <div class="purchase-history">
+        <!-- Order header section -->
         <div class="order-header">
             <div class="header-item">
                 <span class="header-label">Order Number:</span>
@@ -130,6 +137,7 @@
 
         <hr />
 
+        <!-- Order details section -->
         <div class="order-details">
             <div class="product-image">
                 <img src="images/tshirt.jpg" alt="T-shirt Image" />
@@ -143,11 +151,13 @@
             </div>
         </div>
 
+        <!-- Order total section -->
         <div class="order-total">
             Total Amount: $20.00
         </div>
     </div>
 
+    <!-- JavaScript file -->
     <script src="scripts.js"></script>
 </body>
 </html>

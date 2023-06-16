@@ -1,11 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="payment.aspx.cs" Inherits="kuze.payment" %>
 
+<!-- This page allows users to make a payment -->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Payment Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* CSS styles for the page layout and design */
+
         * {
             box-sizing: border-box;
         }
@@ -53,9 +57,9 @@
             padding: 10px;
         }
 
-            .payment-option.selected {
-                background-color: #d3d3d3;
-            }
+        .payment-option.selected {
+            background-color: #d3d3d3;
+        }
 
         .payment-icon {
             width: 40px;
@@ -116,7 +120,18 @@
             cursor: pointer;
         }
 
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .exclamation-mark {
+            margin-left: 10px;
+        }
+
+
         @media screen and (max-width: 768px) {
+            /* Media query for mobile devices */
 
             .container {
                 flex-direction: column;
@@ -146,39 +161,58 @@
         <!-- Left Content -->
         <div class="left-content">
             <h2 class="header">Payment</h2>
-            <div class="payment-option" onclick="selectPaymentOption(this)">
-                <img class="payment-icon" src="images/card.png" alt="Card"></div>
-            <div class="payment-option" onclick="selectPaymentOption(this)">
-                <img class="payment-icon" src="images/paypal.png" alt="PayPal"></div>
-            <div class="payment-option" onclick="selectPaymentOption(this)">
-                <img class="payment-icon" src="images/applepay.png" alt="Apple Pay"></div>
+            <div class="payment-options">
+                <!-- Payment options for users to choose from -->
+                <div class="payment-option" onclick="selectPaymentOption(this)">
+                    <img class="payment-icon" src="images/card.png" alt="Card">
+                </div>
+                <div class="payment-option" onclick="selectPaymentOption(this)">
+                    <img class="payment-icon" src="images/paypal.png" alt="PayPal">
+                </div>
+                <div class="payment-option" onclick="selectPaymentOption(this)">
+                    <img class="payment-icon" src="images/applepay.png" alt="Apple Pay">
+                </div>
+            </div>
 
-            <h2 class="header">Shipping</h2>
-            <select class="text-input">
-                <option>Select shipping option...</option>
-                <option>J&T Express</option>
-                <option>UPS</option>
-            </select>
-
+            <!-- User input fields -->
             <h2 class="header">Name</h2>
-            <input class="text-input" type="text">
+            <div class="input-wrapper" id="name-input-wrapper">
+                <input class="text-input" type="text" id="name-input">
+            </div>
 
             <h2 class="header">Street Address</h2>
-            <input class="text-input" type="text">
+            <div class="input-wrapper" id="address-input-wrapper">
+                <input class="text-input" type="text" id="address-input">
+            </div>
 
             <h2 class="header">Zip Code</h2>
-            <input class="text-input" type="text">
+            <div class="input-wrapper" id="zip-code-input-wrapper">
+                <input class="text-input" type="text" id="zip-code-input">
+            </div>
 
+            <h2 class="header">Shipping</h2>
+            <div class="input-wrapper" id="shipping-input-wrapper">
+                <select class="text-input" id="shipping-input">
+                    <option value="">Select shipping option...</option>
+                    <option>J&T Express</option>
+                    <option>UPS</option>
+                </select>
+            </div>
+
+            <!-- Gift wrap option -->
             <input type="checkbox" id="giftWrap" name="giftWrap">
             <label for="giftWrap">Gift wrap this order</label>
 
+            <!-- Order placement information -->
             <p>By clicking "Place Order," you agree to pay for your purchase, understand potential delivery delays, accept our return/refund policy, and consent to our privacy policy. You also confirm that all the information you have provided is accurate.</p>
 
-            <button id="place-order-button">Place Order</button>
+            <!-- Place order button -->
+            <button id="place-order-button" onclick="placeOrder()">Place Order</button>
         </div>
 
         <!-- Right Content -->
         <div class="right-content">
+            <!-- Order summary box -->
             <div class="summary-box">
                 <h3 class="summary-header">Summary</h3>
                 <div class="summary-line"></div>
@@ -199,6 +233,7 @@
                 </div>
             </div>
 
+            <!-- Additional features -->
             <div class="features">
                 <img src="images/cross.png" alt="icon" class="icon">
                 <span>Free, easy cancellation</span>
@@ -210,15 +245,120 @@
         </div>
     </div>
 
+    <!-- JavaScript code for interactivity -->
     <script>
+        // Function to select a payment option
         function selectPaymentOption(element) {
             var options = document.querySelectorAll('.payment-option');
             options.forEach(function (opt) {
                 opt.classList.remove('selected');
             });
             element.classList.add('selected');
+            removeExclamationMark(document.querySelector('.payment-options')); // Add this line
         }
-    </script>
 
+        // Function to place an order
+        function placeOrder() {
+            var nameInput = document.getElementById('name-input');
+            var nameInputWrapper = document.getElementById('name-input-wrapper');
+            var addressInput = document.getElementById('address-input');
+            var addressInputWrapper = document.getElementById('address-input-wrapper');
+            var zipCodeInput = document.getElementById('zip-code-input');
+            var zipCodeInputWrapper = document.getElementById('zip-code-input-wrapper');
+            var shippingInput = document.getElementById('shipping-input');
+            var shippingInputWrapper = document.getElementById('shipping-input-wrapper');
+            var paymentOptions = document.querySelector('.payment-options');
+            var paymentSelected = document.querySelector('.payment-option.selected');
+
+            // Remove any existing exclamation marks
+            var exclamationMarks = document.querySelectorAll('.exclamation-mark');
+            exclamationMarks.forEach(function (mark) {
+                mark.remove();
+            });
+
+            // Validate name
+            if (!nameInput.value) {
+                addExclamationMark(nameInputWrapper, "Name is required.");
+            }
+
+            // Validate address
+            if (!addressInput.value) {
+                addExclamationMark(addressInputWrapper, "Address is required.");
+            }
+
+            // Validate zip code
+            if (!zipCodeInput.value) {
+                addExclamationMark(zipCodeInputWrapper, "Zip code is required.");
+            }
+
+            // Validate shipping method
+            if (!shippingInput.value) {
+                addExclamationMark(shippingInputWrapper, "Shipping option is required.");
+            }
+
+            // Validate payment method
+            if (!paymentSelected) {
+                addExclamationMark(paymentOptions, "Payment method is required.");
+            }
+
+            // If all fields are valid, proceed to random redirection
+            if (nameInput.value && addressInput.value && zipCodeInput.value && shippingInput.value && paymentSelected) {
+                var randomNumber = Math.random();
+                if (randomNumber < 0.5) {
+                    window.location.href = 'paymentSuccess.aspx';
+                } else {
+                    window.location.href = 'paymentUnsuccessful.aspx';
+                }
+            }
+        }
+
+        // Function to add an exclamation mark and error message
+        function addExclamationMark(element, message) {
+            var exclamationMark = document.createElement('span');
+            exclamationMark.className = 'exclamation-mark';
+            exclamationMark.textContent = "❗";
+            exclamationMark.title = message;
+            element.appendChild(exclamationMark);
+        }
+
+        // Function to remove exclamation marks
+        function removeExclamationMark(wrapperElement) {
+            var exclamationMark = wrapperElement.querySelector('.exclamation-mark');
+            if (exclamationMark) {
+                exclamationMark.remove();
+            }
+        }
+
+        // Event listeners for input fields
+        document.addEventListener("DOMContentLoaded", function () {
+            var nameInput = document.getElementById('name-input');
+            var addressInput = document.getElementById('address-input');
+            var zipCodeInput = document.getElementById('zip-code-input');
+            var shippingInput = document.getElementById('shipping-input');
+            var paymentOptions = document.querySelectorAll('.payment-option');
+
+            nameInput.addEventListener('input', function () {
+                removeExclamationMark(document.getElementById('name-input-wrapper'));
+            });
+
+            addressInput.addEventListener('input', function () {
+                removeExclamationMark(document.getElementById('address-input-wrapper'));
+            });
+
+            zipCodeInput.addEventListener('input', function () {
+                removeExclamationMark(document.getElementById('zip-code-input-wrapper'));
+            });
+
+            shippingInput.addEventListener('change', function () {
+                removeExclamationMark(document.getElementById('shipping-input-wrapper'));
+            });
+
+            paymentOptions.forEach(function (paymentOption) {
+                paymentOption.addEventListener('click', function () {
+                    removeExclamationMark(document.querySelector('.payment-options'));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
