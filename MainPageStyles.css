@@ -1,0 +1,235 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+/* Banner Styles */
+.banner {
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    overflow: hidden;
+}
+
+    .banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+.banner-content {
+    position: absolute;
+    top: 40%;
+    left: 50px;
+    transform: translateY(-50%);
+    width: 40%;
+}
+
+    .banner-content h5 {
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: darkred;
+        font-size: 15px;
+    }
+
+    .banner-content h1 {
+        font-size: 45px;
+        color: black;
+    }
+
+    .banner-content h3 {
+        font-size: 18px;
+        color: slategrey;
+        letter-spacing: 1.5px;
+        line-height: 20px;
+        font-weight: 300;
+        margin-bottom: 50px;
+    }
+
+    .banner-content a {
+        width: 20%;
+        padding: 15px;
+        font-size: 20px;
+        border: none;
+        background-color: #696969;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .banner-content a:hover {
+            background-color: #dcdcdc;
+            color: black;
+        }
+
+/* Featured Section Styles */
+.featured-container {
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+    width: 70%;
+    margin: 70px;
+}
+
+.featured {
+    text-align: center;
+    justify-items: center;
+    margin: 30px;
+    padding: 0 auto;
+}
+
+    .featured .featured-item {
+        font-weight: 550;
+        font-size: 18px;
+    }
+
+    .featured img {
+        width: 340px;
+        height: 400px;
+        max-width: 400px;
+    }
+
+    .featured label {
+        display: block;
+        margin-top: 35px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .featured a {
+        color: black;
+        font-size: 12px;
+        letter-spacing: 2px;
+        cursor: pointer;
+    }
+
+        .featured a:hover {
+            color: rosybrown;
+            font-weight: 510;
+        }
+
+/* Content Section Styles */
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px;
+}
+
+.content-title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 35px;
+}
+
+.content-left,
+.content-right {
+    width: 50%;
+    margin-left: 50px;
+    padding: 20px;
+    max-width: 450px;
+}
+
+    .content-left img,
+    .content-right img {
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .content-left h2,
+    .content-right h2 {
+        color: black;
+    }
+
+    .content-left p,
+    .content-right p {
+        color: grey;
+        margin-bottom: 50px;
+    }
+
+    .content-left h5,
+    .content-right h5 {
+        color: rosybrown;
+        margin-bottom: 50px;
+    }
+
+    .content-left h3,
+    .content-right h3 {
+        color: #005f69;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 35px;
+    }
+
+/* Sustainable Labels Section Styles */
+.suslabels-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    justify-items: center;
+    margin: 80px;
+}
+
+    .suslabels-container img {
+        width: 18%;
+        height: 18%;
+        margin-right: 50px;
+    }
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+    .banner-content {
+        top: 30%;
+        width: 80%;
+    }
+
+        .banner-content h1 {
+            font-size: 35px;
+        }
+
+        .banner-content h3 {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+    .featured-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .featured {
+        margin: 30px 10px;
+    }
+
+    .content {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .content-left,
+    .content-right {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 50px;
+    }
+
+        .content-left img,
+        .content-right img {
+            width: 100%;
+            max-width: none;
+        }
+
+    .suslabels-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 30px;
+    }
+
+        .suslabels-container img {
+            width: 30%;
+            height: 30%;
+            margin-right: 30px;
+        }
+}

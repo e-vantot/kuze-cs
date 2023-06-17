@@ -13,6 +13,7 @@
 
         body,
         html {
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -91,6 +92,7 @@
             margin: 10px;
             width: 27%;
             cursor: pointer;
+            position: relative;
         }
 
             .product img {
@@ -187,14 +189,34 @@
 
         .addToCartButton {
             display: block;
-            margin: 20px auto;
             padding: 10px;
-            font-size: 18px;
+            font-size: 12px;
             cursor: pointer;
-            background-color: black;
+            background-color: green;
             color: white;
             border: none;
             border-radius: 5px;
+            width: 100%;
+            position: absolute;
+            top: 31px;
+            right: 10px;
+        }
+
+        .product-details {
+            position: absolute;
+            bottom: 44px;
+            left: 125px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .dropdown {
+            margin-right: 5px;
+        }
+
+        .quantity-input,
+        .size-input {
+            width: 34px;
         }
     </style>
 </head>
@@ -211,7 +233,7 @@
 
         <!-- Search results section -->
         <div id="search-results">
-            <h2>Search Results</h2>
+            <h2 style="font-size: 32px">Search Results</h2>
         </div>
 
         <div class="content">
@@ -229,107 +251,113 @@
             <div class="products">
                 <!-- Example Product -->
                 <div class="product" data-productid="1">
-                    <img src="images/tshirt.jpg" alt="product name" />
-                    <div class="product-name">Piqué Biker Jacket</div>
+                    <img src="images/tshirt.jpg?" alt="product name" />
+                    <div class="product-name">Biker Jacket</div>
                     <div class="stars">★★★★★</div>
                     <div class="price">$99.99</div>
-                    <asp:HiddenField ID="productIdHiddenField" runat="server" Value="" />
-
+                    <div class="product-details">
+                        <div class="dropdown">
+                            <asp:DropDownList ID="quantityDropdown1" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:DropDownList ID="sizeDropdown1" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:Button ID="addToCartButton1" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="1" />
+                        </div>
+                    </div>
                 </div>
                 <div class="product" data-productid="2">
-                    <img src="images/varsityjacket.jpg" alt="product name" />
+                    <img src="images/varsityjacket.jpg?" alt="product name" />
                     <div class="product-name">Varsity Jacket</div>
                     <div class="stars">★★★★★</div>
                     <div class="price">$129.99</div>
-
+                    <div class="product-details">
+                        <div class="dropdown">
+                            <asp:DropDownList ID="quantityDropdown2" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:DropDownList ID="sizeDropdown2" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:Button ID="addToCartButton2" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="2" />
+                        </div>
+                    </div>
                 </div>
                 <div class="product" data-productid="3">
-                    <img src="images/sexyskirt.jpg" alt="product name" />
+                    <img src="images/sexyskirt.jpg?" alt="product name" />
                     <div class="product-name">Sexy Skirt</div>
                     <div class="stars">★★★★</div>
                     <div class="price">$39.99</div>
+                    <div class="product-details">
+                        <div class="dropdown">
+                            <asp:DropDownList ID="quantityDropdown3" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
 
+                            <asp:DropDownList ID="sizeDropdown3" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:Button ID="addToCartButton3" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="3" />
+                        </div>
+                    </div>
                 </div>
                 <div class="product" data-productid="4">
-                    <img src="images/bikini.jpg" alt="product name" />
+                    <img src="images/bikini.jpg?" alt="product name" />
                     <div class="product-name">Bikini</div>
                     <div class="stars">★★★</div>
                     <div class="price">$15.59</div>
+                    <div class="product-details">
+                        <div class="dropdown">
+                            <asp:DropDownList ID="quantityDropdown4" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:DropDownList ID="sizeDropdown4" runat="server" CssClass="quantity-input">
+                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
+                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="dropdown">
+                            <asp:Button ID="addToCartButton4" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="4" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-
-    <!-- Modal (popup) -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="left">
-                <img src="images/tshirt.jpg" alt="product name" style="max-width: 100%;" />
-            </div>
-            <div class="right">
-                <div class="modal-header">
-                    <div class="addToCartTitle">Add to Cart</div>
-                    <span class="close" onclick="document.getElementById('myModal').style.display = 'none'">&times;</span>
-                </div>
-                <div style="font-weight: bold;">Price</div>
-                <input type="text" value="$20.5" readonly />
-                <div style="font-weight: bold;">Name</div>
-                <input type="text" value="Piqué Biker Jacket" readonly />
-                <div style="font-weight: bold;">Colour</div>
-                <select class="dropdown">
-                    <option selected>Black</option>
-                    <option>Red</option>
-                    <option>Blue</option>
-                </select>
-                <div style="font-weight: bold;">Size</div>
-                <select class="dropdown">
-                    <option selected>Medium</option>
-                    <option>Small</option>
-                    <option>Large</option>
-                </select>
-                <div style="font-weight: bold;">Quantity</div>
-                <input id="quantity" class="quantity-input" type="text" value="1" readonly />
-                <button onclick="incrementQuantity()">+</button>
-                <button class="addToCartButton" onclick="AddToCart_Click()">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // JavaScript code for the functionality of the page
-
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the product elements to open the modal
-        var products = document.getElementsByClassName("product");
-
-        // When the user clicks on a product, open the modal
-        for (var i = 0; i < products.length; i++) {
-            products[i].onclick = function () {
-                var productName = this.getElementsByClassName("product-name")[0].innerText;
-                var productPrice = this.getElementsByClassName("price")[0].innerText;
-                var productImage = this.getElementsByTagName("img")[0].src;
-
-                var modalImage = modal.getElementsByClassName("left")[0].getElementsByTagName("img")[0];
-                var modalProductName = modal.getElementsByTagName("input")[1];
-                var modalProductPrice = modal.getElementsByTagName("input")[0];
-
-                modalImage.src = productImage;
-                modalProductName.value = productName;
-                modalProductPrice.value = productPrice;
-
-                modal.style.display = "block";
-            }
-        }
-
-        // Increase quantity
-        function incrementQuantity() {
-            var quantityInput = document.getElementById("quantity");
-            var quantity = parseInt(quantityInput.value, 10);
-            quantityInput.value = quantity + 1;
-        }
-    </script>
 </body>
 
 </html>

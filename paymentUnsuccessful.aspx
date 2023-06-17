@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="paymentUnsuccessful.aspx.cs" Inherits="kuze.paymentUnsuccessful" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PaymentUnsuccessful.aspx.cs" Inherits="kuze.PaymentUnsuccessful" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

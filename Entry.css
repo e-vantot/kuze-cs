@@ -1,0 +1,230 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    background: url(./Images/kuze-login-bg1.jpeg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logInContainer {
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    box-shadow: 3px 3px 5px 3px rgb(220, 222, 223);
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: center;
+}
+
+.signUpContainer {
+    width: 500px;
+    height: 700px;
+    background-color: white;
+    box-shadow: 3px 3px 5px 3px rgb(220, 222, 223);
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.textContainer {
+    padding: 70px;
+    padding-top: 20px;
+}
+
+.logInTitle {
+    color: #5B514F;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.textContainer input {
+    width: 100%;
+    height: 20px;
+    padding: 5px;
+    background-color: #F5F1EF;
+}
+
+.welcomeText {
+    color: #847c7a;
+    font-weight: 400;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.textContainer h1 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.labelContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+    .labelContainer label {
+        width: 30%;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        box-shadow: none;
+    }
+
+.label {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.signInButton {
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #9D786F;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.spanContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 20px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.textBoxStyle {
+    border-radius: 5px;
+    border-color: #4e3530;
+    border-width: thin;
+    font-size: 14px;
+}
+
+    .textBoxStyle:focus {
+        box-shadow: 0 0 5px #a97367;
+    }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 40px;
+    padding-bottom: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom3: 30px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    body {
+        background: none;
+    }
+
+    .container {
+        width: 85vw;
+        height: 85vh;
+        align-items: center;
+        justify-content: center;
+        margin-left: 35px;
+    }
+
+    .logInContainer {
+        width: 425px;
+        height: 510px;
+        margin: auto;
+        margin-top: 100px;
+    }
+
+    .logInTitle {
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    .signUpContainer {
+        width: 425px;
+        height: 655px;
+        margin: auto;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 75vw;
+        height: 75vh;
+        align-items: center;
+        justify-content: center;
+        margin-left: 35px;
+    }
+
+    .logInContainer {
+        width: 375px;
+        height: 450px;
+        margin: auto;
+        margin-top: 100px;
+    }
+
+    .logInTitle {
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    .signUpContainer {
+        width: 375px;
+        height: 655px;
+        margin: auto;
+        margin-top: 200px;
+    }
+}

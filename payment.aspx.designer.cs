@@ -11,7 +11,7 @@ namespace kuze
 {
 
 
-    public partial class payment
+    public partial class Payment
     {
     }
 }
