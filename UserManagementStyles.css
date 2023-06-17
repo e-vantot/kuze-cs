@@ -1,0 +1,264 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 400px;
+    background-color: #f5f1ef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Add position: relative */
+}
+
+.banner-title {
+    padding: 60px 100px;
+    padding-right: 10px;
+}
+
+    .banner-title p {
+        color: #ac3737;
+    }
+
+    .banner-title h1 {
+        margin-top: 50px;
+        font-weight: 400;
+    }
+
+.circle {
+    justify-self: center;
+    align-self: center;
+    width: 350px; /* Adjust the width if needed */
+    height: 350px; /* Adjust the height if needed */
+    border-radius: 50%;
+    background-color: #eee0dd;
+    margin-right: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    margin-top: 70px;
+    padding-bottom: 100px;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.add-user-button {
+    width: 60vw;
+    margin: auto;
+    margin-top: 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+th,
+td {
+    padding: 20px;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f1ef;
+}
+
+td:first-child {
+    width: 10%;
+}
+
+td:nth-child(2) {
+    width: 30%;
+}
+
+td:nth-child(3) {
+    width: 25%;
+}
+
+td:nth-child(4) {
+    width: 20%;
+}
+
+td:nth-child(5) {
+    width: 20%;
+}
+
+.profile-picture {
+    display: flex;
+    align-items: center;
+}
+
+    .profile-picture img {
+        width: 40px;
+        height: 35px;
+        border-radius: 30%;
+        margin-right: 10px;
+    }
+
+.edit-icon {
+    cursor: pointer;
+}
+
+    .edit-icon::before {
+        content: "\270E";
+        font-size: 20px;
+    }
+
+.delete-icon {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 20px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 3% auto;
+    padding: 40px;
+    padding-bottom: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom3: 30px;
+}
+
+    .modal-content label {
+        display: block;
+        text-align: left;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .modal-content h2 {
+        margin-bottom: 0px;
+    }
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+
+label {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+input,
+select {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button[type="submit"] {
+    padding: 8px 15px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #2d2f2d;
+    }
+
+.edit-close {
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    justify-self: flex-start;
+    align-self: flex-start;
+    right: 0;
+    width: max-content;
+    height: fit-content;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+    border: none;
+}
+
+.cancel-button,
+.confirm-button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button .delete-button {
+    cursor: pointer
+}
+
+.error-message {
+    text-align: left !important;
+    font-size: 12px;
+    color: red;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.modal-input {
+    margin-bottom: 0px;
+}
+
+.modal-label {
+    margin-top: 15px
+}
+
+.margin-button {
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+}
