@@ -348,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="User_Layer_Interface\Site\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
