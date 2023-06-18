@@ -106,7 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="images\kuze.png" />
     <Content Include="User_Layer_Interface\AboutUs.aspx" />
     <Content Include="User_Layer_Interface\AboutUsStyles.css" />
     <Content Include="User_Layer_Interface\AdminLogin.aspx" />
@@ -215,13 +215,6 @@
       <DependentUpon>AdminRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="User_Layer_Interface\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>

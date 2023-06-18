@@ -12,10 +12,24 @@
 </head>
 
 <body>
+
     <div class="container">
-        <div class="logo-container">
-            <img src="/Images/kuze-logo.png" alt="Logo" />
+     <!--Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <p>KUZE</p>
         </div>
+        <div class="navbar-links">
+            <ul class="navbar-list">
+                <li><a href="MainPage.aspx">Home</a></li>
+                <li><a href="AboutUs.aspx">About</a></li>
+                <li><a href="ProductPage.aspx">Products</a></li>
+                <li><a href="ContactUs.aspx">Contact</a></li>
+                <li><a href="UserLogin.aspx">Account</a></li>
+                <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+            </ul>
+        </div>
+    </nav>
         <h5>kuze by ekoism</h5>
         <h2>Contact Us</h2>
         <img class="contact-image" src="/Images/kuze-contact.png" alt="Page Image" />
@@ -55,8 +69,13 @@
                 <input type="submit" value="SEND" runat="server" OnClick="btnSend_Click" ValidationGroup="FormValidation"/>
             </div>
         </form>
-
+        <!--Footer--> 
+        <footer class="footer">
+            <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        </footer>
     </div>
+
 </body>
+
 
 </html>

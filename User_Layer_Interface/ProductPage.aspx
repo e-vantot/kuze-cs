@@ -18,6 +18,54 @@
             padding: 0;
         }
 
+
+        /*Nav Bar*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+}
+
+    .navbar p {
+        color: darkslateblue;
+        font-size: 30px;
+        font-weight: 600;
+        padding: 0 auto;
+        margin: 0 auto;
+    }
+
+.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .navbar-list li {
+        display: inline;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+        .navbar-list li:first-child {
+            margin-left: 0;
+        }
+
+        .navbar-list li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .navbar-list li a:hover {
+            border-color: #ffc107;
+            font-weight: 600;
+        }
+
         #header {
             background-image: url(images/searchbackground.jpg);
             background-size: 100% 100%;
@@ -218,10 +266,62 @@
         .size-input {
             width: 34px;
         }
+
+        .footer {
+        background-color: lightslategrey;
+        color:white;
+        padding: 30px;
+        text-align: center;
+        margin-top: 100px;
+        }
+
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar-logo {
+        margin-bottom: 10px;
+    }
+
+    .navbar-list li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer p {
+        flex-basis: 50%;
+    }
     </style>
 </head>
 
 <body>
+    
+    <!--Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <p>KUZE</p>
+        </div>
+        <div class="navbar-links">
+            <ul class="navbar-list">
+                <li><a href="MainPage.aspx">Home</a></li>
+                <li><a href="AboutUs.aspx">About</a></li>
+                <li><a href="ProductPage.aspx">Products</a></li>
+                <li><a href="ContactUs.aspx">Contact</a></li>
+                <li><a href="UserLogin.aspx">Account</a></li>
+                <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+            </ul>
+        </div>
+    </nav>
     <form id="form1" runat="server">
         <!-- Header section -->
         <div id="header">
@@ -358,6 +458,10 @@
             </div>
         </div>
     </form>
+    <!--Footer--> 
+    <footer class="footer">
+      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>

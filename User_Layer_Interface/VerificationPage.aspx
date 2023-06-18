@@ -18,6 +18,54 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        
+    /*Nav Bar*/
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 15px;
+    }
+
+    .navbar p {
+        color: darkslateblue;
+        font-size: 30px;
+        font-weight: 600;
+        padding: 0 auto;
+        margin: 0 auto;
+    }
+
+    .navbar-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-list li {
+        display: inline;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+        .navbar-list li:first-child {
+            margin-left: 0;
+        }
+
+        .navbar-list li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .navbar-list li a:hover {
+             border-color: #ffc107;
+             font-weight: 600;
+         }
+
         .container{
             display: flex;
             flex-direction: column;
@@ -54,6 +102,32 @@
             border-radius: 5px;
 
         }
+
+    @media screen and (max-width: 768px) {
+     /* Media query for mobile devices */
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .navbar-logo {
+        margin-bottom: 10px;
+    }
+
+    .navbar-list li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer p {
+        flex-basis: 50%;
+    }
     </style>
 </head>
 <body>

@@ -20,6 +20,7 @@
             padding: 0;
         }
 
+
         .container {
             display: flex;
             padding: 20px;
@@ -129,6 +130,14 @@
             margin-left: 10px;
         }
 
+        .footer {
+        background-color: lightslategrey;
+        color:white;
+        padding: 30px;
+        text-align: center;
+        margin-top: 100px;
+        }
+
 
         @media screen and (max-width: 768px) {
             /* Media query for mobile devices */
@@ -150,6 +159,17 @@
             #title {
                 font-size: 24px;
                 margin-bottom: 20px;
+            }
+
+            
+            .footer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer p {
+                flex-basis: 50%;
             }
         }
     </style>
@@ -360,5 +380,10 @@
             });
         });
     </script>
+    <!--Footer--> 
+    <footer class="footer">
+      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>

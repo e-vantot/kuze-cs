@@ -11,6 +11,24 @@
     <link rel="stylesheet" href="AboutUsStyles.css"/>
 </head>
 <body>
+    <!--Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <p>KUZE</p>
+        </div>
+        <div class="navbar-links">
+            <ul class="navbar-list">
+                <li><a href="MainPage.aspx">Home</a></li>
+                <li><a href="AboutUs.aspx">About</a></li>
+                <li><a href="ProductPage.aspx">Products</a></li>
+                <li><a href="ContactUs.aspx">Contact</a></li>
+                <li><a href="UserLogin.aspx">Account</a></li>
+                <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
     <form id="form1" runat="server">
     <!-- Banner Section -->
     <div class="banner">
@@ -84,6 +102,11 @@
         </div>
     </div>
    </form>
-</body>
+   <!--Footer--> 
+        <footer class="footer">
+          <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        </footer>
+    </body>
+
 </html>
 
