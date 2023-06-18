@@ -12,6 +12,18 @@
 </head>
   
 <body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <p>KUZE</p>
+            <span> admin</span>
+        </div>
+        <div class="navbar-links">
+            <ul class="navbar-list">
+                <li><a href="ItemManagementPage.aspx">Item Management</a></li>
+                <li><a href="UserManagement.aspx">User Management</a></li>
+            </ul>
+        </div>
+    </nav>
     <form id="itemManagementForm" runat="server">
         <header>
             <div class="banner-title">
@@ -348,6 +360,10 @@
         </div>
         <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
+     <!--Footer--> 
+        <footer class="footer">
+            <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        </footer>
 </body>
 </html>
 
