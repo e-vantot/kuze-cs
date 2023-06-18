@@ -194,7 +194,7 @@
                 <!-- Horizontal line -->
                 <div id="horizontal-line2"></div>
                 <!-- Product details -->
-                <img class="product-image" src="images/tshirt.jpg" alt="Product Image">
+                <img class="product-image" src="../images/tshirt.jpg" alt="Product Image">
                 <div class="product-info">
                     <div>T-Shirt</div>
                     <div>Size: M</div>

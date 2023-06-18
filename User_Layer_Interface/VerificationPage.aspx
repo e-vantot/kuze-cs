@@ -11,7 +11,7 @@
         body {
             padding:0;
             margin: 0;
-            background: url(./Images/kuze-login-bg1.jpeg);
+            background: url(../Images/kuze-login-bg1.jpeg);
             background-size: cover;
             width: 100%;
             height: 100%;

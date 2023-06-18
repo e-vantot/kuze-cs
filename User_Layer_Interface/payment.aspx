@@ -164,13 +164,13 @@
             <div class="payment-options">
                 <!-- Payment options for users to choose from -->
                 <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="images/card.png" alt="Card">
+                    <img class="payment-icon" src="../images/card.png" alt="Card">
                 </div>
                 <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="images/paypal.png" alt="PayPal">
+                    <img class="payment-icon" src="../images/paypal.png" alt="PayPal">
                 </div>
                 <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="images/applepay.png" alt="Apple Pay">
+                    <img class="payment-icon" src="../images/applepay.png" alt="Apple Pay">
                 </div>
             </div>
 
@@ -235,11 +235,11 @@
 
             <!-- Additional features -->
             <div class="features">
-                <img src="images/cross.png" alt="icon" class="icon">
+                <img src="../images/cross.png" alt="icon" class="icon">
                 <span>Free, easy cancellation</span>
             </div>
             <div class="features">
-                <img src="images/truck.png" alt="icon" class="icon">
+                <img src="../images/truck.png" alt="icon" class="icon">
                 <span>Free shipping, always</span>
             </div>
         </div>
@@ -305,7 +305,7 @@
             if (nameInput.value && addressInput.value && zipCodeInput.value && shippingInput.value && paymentSelected) {
                 var randomNumber = Math.random();
                 if (randomNumber < 0.5) {
-                    window.location.href = 'paymentSuccess.aspx';
+                    window.location.href = 'paymentSuccessful.aspx';
                 } else {
                     window.location.href = 'paymentUnsuccessful.aspx';
                 }

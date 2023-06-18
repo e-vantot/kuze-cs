@@ -86,7 +86,7 @@
         <div id="line"></div>
         <div id="container">
             <!-- Payment failed image and message container -->
-            <img id="payment-failed-image" src="images/unsucessfulpayment.png" alt="Image">
+            <img id="payment-failed-image" src="../images/unsucessfulpayment.png" alt="Image">
             <div id="message-container">
                 <!-- Payment failed text -->
                 <div id="payment-failed-text">Payment Failed</div>

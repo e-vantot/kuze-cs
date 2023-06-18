@@ -140,7 +140,7 @@
         <!-- Order details section -->
         <div class="order-details">
             <div class="product-image">
-                <img src="images/tshirt.jpg" alt="T-shirt Image" />
+                <img src="../images/tshirt.jpg" alt="T-shirt Image" />
             </div>
             <div class="product-info">
                 <span class="product-name">T-shirt Name</span>

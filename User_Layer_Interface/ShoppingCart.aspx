@@ -80,7 +80,7 @@
                     <tr>
                         <td>
                             <div class="product-image">
-                                <img class="product-image" src="./Images/<%= item.ProductImage %>" alt="<%= item.ProductImage %>" />
+                                <img class="product-image" src=".././Images/<%= item.ProductImage %>" alt="<%= item.ProductImage %>" />
                             </div>
                         </td>
                         <td>

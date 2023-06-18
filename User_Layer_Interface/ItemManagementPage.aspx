@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 1" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 1" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 1</h3>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 2</h3>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 3</h3>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 4</h3>
@@ -135,7 +135,7 @@
                 <div class="row">
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 1" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 1" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 1</h3>
@@ -156,7 +156,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 2</h3>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 3</h3>
@@ -198,7 +198,7 @@
                     </div>
                     <div class="product-container">
                         <div class="product-details">
-                            <img src="./Images/cloth.jpg" alt="Product 2" class="cloth-img" />
+                            <img src="../Images/cloth.jpg" alt="Product 2" class="cloth-img" />
                             <div style="padding: 0px 10px">
                                 <div class="name-container">
                                     <h3>Product 4</h3>
@@ -231,7 +231,7 @@
                 </div>
                 <div class="edit-modal-body">
                     <div class="image-container">
-                        <asp:Image ID="Image2" runat="server" src="./Images/cloth.jpg" alt="Product Image" class="edit-image" />
+                        <asp:Image ID="Image2" runat="server" src="../Images/cloth.jpg" alt="Product Image" class="edit-image" />
                     </div>
                     <div class="form-container">
                         <asp:Panel ID="Panel2" runat="server" CssClass="form-innerContainer">
@@ -291,7 +291,7 @@
                 </div>
                 <div class="edit-modal-body">
                     <div class="image-container">
-                        <asp:Image ID="editImage" runat="server" src="./Images/cloth.jpg" alt="Product Image" class="edit-image" />
+                        <asp:Image ID="editImage" runat="server" src="../Images/cloth.jpg" alt="Product Image" class="edit-image" />
                     </div>
                     <div class="form-container">
                         <asp:Panel ID="editPanel" runat="server" CssClass="form-innerContainer">

@@ -251,7 +251,7 @@
             <div class="products">
                 <!-- Example Product -->
                 <div class="product" data-productid="1">
-                    <img src="images/tshirt.jpg?" alt="product name" />
+                    <img src="../images/tshirt.jpg?" alt="product name" />
                     <div class="product-name">Biker Jacket</div>
                     <div class="stars">★★★★★</div>
                     <div class="price">$99.99</div>
@@ -277,7 +277,7 @@
                     </div>
                 </div>
                 <div class="product" data-productid="2">
-                    <img src="images/varsityjacket.jpg?" alt="product name" />
+                    <img src="../images/varsityjacket.jpg?" alt="product name" />
                     <div class="product-name">Varsity Jacket</div>
                     <div class="stars">★★★★★</div>
                     <div class="price">$129.99</div>
@@ -303,7 +303,7 @@
                     </div>
                 </div>
                 <div class="product" data-productid="3">
-                    <img src="images/sexyskirt.jpg?" alt="product name" />
+                    <img src="../images/sexyskirt.jpg?" alt="product name" />
                     <div class="product-name">Sexy Skirt</div>
                     <div class="stars">★★★★</div>
                     <div class="price">$39.99</div>
@@ -330,7 +330,7 @@
                     </div>
                 </div>
                 <div class="product" data-productid="4">
-                    <img src="images/bikini.jpg?" alt="product name" />
+                    <img src="../images/bikini.jpg?" alt="product name" />
                     <div class="product-name">Bikini</div>
                     <div class="stars">★★★</div>
                     <div class="price">$15.59</div>
