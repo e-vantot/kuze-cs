@@ -106,6 +106,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\KuzeDB.mdf" />
+    <Content Include="App_Data\KuzeDB_log.ldf">
+      <DependentUpon>KuzeDB.mdf</DependentUpon>
+    </Content>
     <Content Include="images\kuze.png" />
     <Content Include="User_Layer_Interface\AboutUs.aspx" />
     <Content Include="User_Layer_Interface\AboutUsStyles.css" />
@@ -340,10 +344,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="User_Layer_Interface\Site\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
