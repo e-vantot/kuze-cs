@@ -4,14 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace kuze
 {
     public partial class UserRegistration : System.Web.UI.Page
     {
+        int UserID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            /*if (!IsPostBack)
             {
                 // Retrieve the "RegistrationData_Name" cookie
                 HttpCookie nameCookie = Request.Cookies["RegistrationData_Name"];
@@ -19,13 +22,13 @@ namespace kuze
                 HttpCookie emailCookie = Request.Cookies["RegistrationData_Email"];
 
                 // Populate the name TextBox with the value from the cookie, if it exists
-                username.Text = nameCookie?.Value;
+                txtUsername.Text = nameCookie?.Value;
                 // Populate the email TextBox with the value from the cookie, if it exists
-                email.Text = emailCookie?.Value;
-            }
+                txtEmail.Text = emailCookie?.Value;
+            }*/
         }
 
-        protected void signUpButton_Click(object sender, EventArgs e)
+        /*protected void signUpButton_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
@@ -38,9 +41,52 @@ namespace kuze
             }
             // Redirect to the VerificationPage.aspx
             Response.Redirect("VerificationPage.aspx");
-        }
+        }*/
 
-        private void SetCookie(string name, string value, DateTime expiry)
+        protected void SignUpButton_Click(object sender, EventArgs e)
+        {
+            UserID = 0;
+            //constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass1\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Insert_User"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@PhoneNumber", txtContact.Text.Trim());
+                        cmd.Connection = con;
+                        con.Open();
+                        UserID = Convert.ToInt32(cmd.ExecuteScalar());
+                        con.Close();
+                    }
+                }
+                string message = string.Empty;
+                switch (UserID)
+                {
+                    case -1:
+                        message = "Username already exists.\\nPlease choose a different username.";
+                        break;
+                    case -2:
+                        message = "Supplied email address has already been used.";
+                        break;
+                    case -3:
+                        message = "Supplied phone number has already been used.";
+                        break;
+                    default:
+                        message = "Registration successful. Please log-in.";
+                        Response.Redirect("UserLogin.aspx");
+                        // SendActivationEmail(userId);
+                        break;
+                }
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+            }
+        }
+        /*private void SetCookie(string name, string value, DateTime expiry)
         {
             // Create a new HttpCookie instance with the specified name and value
             HttpCookie cookie = new HttpCookie(name, value);
@@ -48,6 +94,6 @@ namespace kuze
             cookie.Expires = expiry;
             // Add the cookie to the response
             Response.Cookies.Add(cookie);
-        }
+        }*/
     }
 }

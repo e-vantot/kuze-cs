@@ -198,6 +198,23 @@
         margin: auto;
         margin-top: 100px;
     }
+
+    .countryCodeContainer {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .contactNumberContainer {
+        display: inline-block;
+    }
+
+    .countryCodeDropDown {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: #f9f9f9;
+    }
 }
 
 @media (max-width: 500px) {

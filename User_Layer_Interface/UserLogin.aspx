@@ -20,22 +20,22 @@
                     <!--<h1>Sign in [Admin]</h1>-->
                     <div>
                         <div class="labelContainer">
-                            <p for="email" class="label">Email:</p>
+                            <p for="txtEmail" class="label">Email:</p>
                         </div>
-                        <asp:TextBox ID="email" CssClass="textBoxStyle" runat="server" style="height: 25px;"></asp:TextBox>
-                        <asp:RegularExpressionValidator CssClass="errorMessage" ID="emailFormatValidator" runat="server" ControlToValidate="email" ErrorMessage="Invalid email format." Display="Dynamic" ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ValidationGroup="signInGroup"></asp:RegularExpressionValidator>
-                        <asp:RequiredFieldValidator CssClass="errorMessage" ID="emailValidator" runat="server" ControlToValidate="email" ErrorMessage="Email is required." Display="Dynamic" ValidationGroup="signInGroup"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtEmail" CssClass="textBoxStyle" runat="server" style="height: 25px;"></asp:TextBox>
+                        <asp:RegularExpressionValidator CssClass="errorMessage" ID="emailFormatValidator" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid email format." Display="Dynamic" ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" ValidationGroup="signInGroup"></asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator CssClass="errorMessage" ID="emailValidator" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is required." Display="Dynamic" ValidationGroup="signInGroup"></asp:RequiredFieldValidator>
                     </div>
                     <div>
                         <div class="labelContainer">
-                            <p for="password" class="label">Password:</p>
+                            <p for="txtPassword" class="label">Password:</p>
                             <a href="about" class="label" style="font-size: 12px; margin: 0px;">Forgot Password</a>
                         </div>
-                        <asp:TextBox ID="password" CssClass="textBoxStyle" runat="server" TextMode="Password" style="height: 25px;"></asp:TextBox>
-                        <asp:RequiredFieldValidator CssClass="errorMessage" ID="passwordValidator" runat="server" ControlToValidate="password" ErrorMessage="Password is required." ValidationGroup="signInGroup"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPassword" CssClass="textBoxStyle" runat="server" TextMode="Password" style="height: 25px;"></asp:TextBox>
+                        <asp:RequiredFieldValidator CssClass="errorMessage" ID="passwordValidator" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." ValidationGroup="signInGroup"></asp:RequiredFieldValidator>
                     </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <asp:Button ID="signInButton" runat="server" Text="SIGN IN" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="signInButtonClick" ValidationGroup="signInGroup" />
+                        <asp:Button ID="signInButton" runat="server" Text="SIGN IN" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="SignInButtonClick" ValidationGroup="signInGroup" />
                         <span class="spanContainer">
                             <p>Don't have an account?</p>
                             <a style="margin-left: 5px;" href="UserRegistration.aspx">Sign Up</a>
@@ -43,15 +43,6 @@
                     </div>
                 </div>
             </div>
-            <!-- User Mode Modal -->
-            <asp:Panel ID="userModeModal" runat="server" CssClass="modal" Visible="false">
-                <div class="modal-content">
-                    <h2>User Mode</h2>
-                    <p>Log in successfully. Welcome Back !</p>
-                    <!-- Okay Button -->
-                    <asp:Button ID="okayButton" runat="server" Text="Okay" CssClass="button" OnClick="okayButton_Click" />
-                </div>
-            </asp:Panel>
         </div>
     </form>
 </body>
