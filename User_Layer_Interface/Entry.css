@@ -121,6 +121,12 @@
     padding-bottom: 30px;
 }
 
+.finalErrorMessage {
+    color: red;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
 .textBoxStyle {
     border-radius: 5px;
     border-color: #4e3530;

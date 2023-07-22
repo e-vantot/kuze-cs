@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace kuze
 {
@@ -23,11 +26,11 @@ namespace kuze
         }
 
 
-        protected void SignInButtonClick(object sender, EventArgs e)
+        protected void SignInButton_Click(object sender, EventArgs e)
         {
             int AdminID = 0;
             // string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass1\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2bef\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
             {
                 using (SqlCommand cmd = new SqlCommand("Validate_Admin"))
                 {
@@ -39,20 +42,21 @@ namespace kuze
                     AdminID = Convert.ToInt32(cmd.ExecuteScalar());
                     con.Close();
                 }
-                string message = string.Empty;
                 switch (AdminID)
                 {
                     case -1:
-                        message = "Incorrect password.";
+                        lblErrorMessage.Text = "Incorrect password";
+                        lblErrorMessage.Visible = true;
                         break;
                     case -2:
-                        message = "Admin does not exist. Please register.";
+                        lblErrorMessage.Text = "User does not exist. Please register.";
+                        lblErrorMessage.Visible = true;
                         break;
                     default:
                         Session["AdminID"] = AdminID; // Store the admin ID in a session variable for future use
-                        Response.Redirect("ItemManagement.aspx");
+                        Response.Redirect("ItemManagementPage.aspx");
+                        break;
                 }
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
             }
         }
 

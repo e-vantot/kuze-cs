@@ -24,13 +24,13 @@ namespace kuze
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// username control.
+        /// txtUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username;
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
         /// usernameValidator control.
@@ -42,13 +42,22 @@ namespace kuze
         protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameValidator;
 
         /// <summary>
-        /// email control.
+        /// usernameLengthValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator usernameLengthValidator;
+
+        /// <summary>
+        /// txtEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
         /// emailValidator control.
@@ -69,31 +78,22 @@ namespace kuze
         protected global::System.Web.UI.WebControls.RegularExpressionValidator emailFormatValidator;
 
         /// <summary>
-        /// contact control.
+        /// emailLengthValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contact;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator emailLengthValidator;
 
         /// <summary>
-        /// contactValidator control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator contactValidator;
-
-        /// <summary>
-        /// password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
         /// passwordValidator control.
@@ -105,13 +105,13 @@ namespace kuze
         protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordValidator;
 
         /// <summary>
-        /// confirmPassword control.
+        /// txtConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
 
         /// <summary>
         /// confirmPasswordValidator control.

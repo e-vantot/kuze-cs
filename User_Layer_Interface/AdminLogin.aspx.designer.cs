@@ -24,13 +24,13 @@ namespace kuze
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// email control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
         /// emailFormatValidator control.
@@ -51,13 +51,13 @@ namespace kuze
         protected global::System.Web.UI.WebControls.RequiredFieldValidator emailValidator;
 
         /// <summary>
-        /// password control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
         /// passwordValidator control.
@@ -78,21 +78,12 @@ namespace kuze
         protected global::System.Web.UI.WebControls.Button signInButton;
 
         /// <summary>
-        /// adminModeModal control.
+        /// lblErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel adminModeModal;
-
-        /// <summary>
-        /// okayButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button okayButton;
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
     }
 }

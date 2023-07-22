@@ -17,7 +17,6 @@
                 <div class="textContainer">
                     <h3 class="logInTitle">User Login</h3>
                     <p class="welcomeText">Welcome back!</p>
-                    <!--<h1>Sign in [Admin]</h1>-->
                     <div>
                         <div class="labelContainer">
                             <p for="txtEmail" class="label">Email:</p>
@@ -36,6 +35,7 @@
                     </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <asp:Button ID="signInButton" runat="server" Text="SIGN IN" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="SignInButtonClick" ValidationGroup="signInGroup" />
+                        <asp:Label ID="lblErrorMessage" runat="server" CssClass="finalErrorMessage" Visible="false"></asp:Label>                        
                         <span class="spanContainer">
                             <p>Don't have an account?</p>
                             <a style="margin-left: 5px;" href="UserRegistration.aspx">Sign Up</a>

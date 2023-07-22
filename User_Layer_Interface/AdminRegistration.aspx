@@ -18,43 +18,38 @@
                     <h3 class="logInTitle">Admin Registration</h3>
                     <div>
                         <div class="labelContainer">
-                            <p for="username" class="label">Username:</p>
+                            <p for="txtUsername" class="label">Username:</p>
                         </div>
-                        <asp:TextBox ID="username" runat="server" CssClass="textBoxStyle" style="height: 25px;"></asp:TextBox>
-                        <asp:RequiredFieldValidator Display="Dynamic" ID="usernameValidator" runat="server" ControlToValidate="username" CssClass="errorMessage" ErrorMessage="Username is required." Text="Username is required."></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtUsername" runat="server" CssClass="textBoxStyle" Style="height: 25px;"></asp:TextBox>
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="usernameValidator" runat="server" ControlToValidate="txtUsername" CssClass="errorMessage" ErrorMessage="Username is required." Text="Username is required."></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator Display="Dynamic" ID="usernameLengthValidator" runat="server" ControlToValidate="txtUsername" CssClass="errorMessage" ErrorMessage="Username must be between 1 and 20 characters long." ValidationExpression="^.{1,20}$" Text="Username must be between 1 and 20 characters long."></asp:RegularExpressionValidator>
                     </div>
                     <div>
                         <div class="labelContainer">
-                            <p for="email" class="label">Email:</p>
+                            <p for="txtEmail" class="label">Email:</p>
                         </div>
-                        <asp:TextBox ID="email" runat="server" CssClass="textBoxStyle" style="height: 25px;"></asp:TextBox>
-                        <asp:RequiredFieldValidator Display="Dynamic" ID="emailValidator" runat="server" ControlToValidate="email" CssClass="errorMessage" ErrorMessage="Email is required." Text="Email is required."></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator Display="Dynamic" ID="emailFormatValidator" runat="server" ControlToValidate="email" CssClass="errorMessage" ErrorMessage="Invalid email format." ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" Text="Invalid email format."></asp:RegularExpressionValidator>
-                    </div>
-                    <!--<div>
-                        <div class="labelContainer">
-                            <p for="contact" class="label">Contact No:</p>
-                        </div>
-                        <asp:TextBox ID="contact" runat="server" CssClass="textBoxStyle"></asp:TextBox>
-                        <asp:RequiredFieldValidator Display="Dynamic" ID="contactValidator" runat="server" ControlToValidate="contact" CssClass="errorMessage" ErrorMessage="Contact is required." Text="Contact is required."></asp:RequiredFieldValidator>
-                    </div>-->
-                    <div>
-                        <div class="labelContainer">
-                            <p for="password" class="label">Password:</p>
-                        </div>
-                        <asp:TextBox ID="password" runat="server" TextMode="Password" CssClass="textBoxStyle" style="height: 25px;"></asp:TextBox>
-                        <asp:RequiredFieldValidator Display="Dynamic" ID="passwordValidator" runat="server" ControlToValidate="password" CssClass="errorMessage" ErrorMessage="Password is required." Text="Password is required."></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="textBoxStyle" Style="height: 25px;"></asp:TextBox>
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="emailValidator" runat="server" ControlToValidate="txtEmail" CssClass="errorMessage" ErrorMessage="Email is required." Text="Email is required."></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator Display="Dynamic" ID="emailFormatValidator" runat="server" ControlToValidate="txtEmail" CssClass="errorMessage" ErrorMessage="Invalid email format." ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" Text="Invalid email format."></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator Display="Dynamic" ID="emailLengthValidator" runat="server" ControlToValidate="txtEmail" CssClass="errorMessage" ErrorMessage="Email must be between 1 and 255 characters long." ValidationExpression="^.{1,255}$" Text="Email must be between 1 and 255 characters long."></asp:RegularExpressionValidator>
                     </div>
                     <div>
                         <div class="labelContainer">
-                            <p for="confirmPassword" class="label">Confirm Password:</p>
+                            <p for="txtPassword" class="label">Password:</p>
                         </div>
-                        <asp:TextBox ID="confirmPassword" runat="server" TextMode="Password" CssClass="textBoxStyle" style="height: 25px;"></asp:TextBox>
-                        <asp:CompareValidator Display="Dynamic" ID="confirmPasswordValidator" runat="server" ControlToValidate="confirmPassword" ControlToCompare="password" CssClass="errorMessage" ErrorMessage="Passwords do not match." Text="Passwords do not match."></asp:CompareValidator>
-                        <asp:RequiredFieldValidator Display="Dynamic" ID="confirmPasswordRequiredValidator" runat="server" ControlToValidate="confirmPassword" CssClass="errorMessage" ErrorMessage="Confirm Password is required." Text="Confirm Password is required."></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="textBoxStyle" Style="height: 25px;"></asp:TextBox>
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="passwordValidator" runat="server" ControlToValidate="txtPassword" CssClass="errorMessage" ErrorMessage="Password is required." Text="Password is required."></asp:RequiredFieldValidator>
+                    </div>
+                    <div>
+                        <div class="labelContainer">
+                            <p for="txtConfirmPassword" class="label">Confirm Password:</p>
+                        </div>
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="textBoxStyle" Style="height: 25px;"></asp:TextBox>
+                        <asp:CompareValidator Display="Dynamic" ID="confirmPasswordValidator" runat="server" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" CssClass="errorMessage" ErrorMessage="Passwords do not match." Text="Passwords do not match."></asp:CompareValidator>
+                        <asp:RequiredFieldValidator Display="Dynamic" ID="confirmPasswordRequiredValidator" runat="server" ControlToValidate="txtConfirmPassword" CssClass="errorMessage" ErrorMessage="Confirm Password is required." Text="Confirm Password is required."></asp:RequiredFieldValidator>
                     </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <asp:Button ID="signUpButton" runat="server" Text="SIGN UP" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="signUpButton_Click" />
+                        <asp:Button ID="signUpButton" runat="server" Text="SIGN UP" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="SignUpButton_Click" />
                         <span class="spanContainer">
                             <p>Have an account?</p>
                             <a style="margin-left: 5px;" href="AdminLogin.aspx">Sign In</a>
