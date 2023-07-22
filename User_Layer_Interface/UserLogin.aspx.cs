@@ -20,7 +20,7 @@ namespace kuze
                 if (Session["UserID"] != null)
                 {
                     // Redirect to the admin dashboard or desired page
-                    Response.Redirect("IMainPage.aspx");
+                    Response.Redirect("MainPage.aspx");
                 }
             }
         }

@@ -22,7 +22,42 @@ namespace kuze
             }
         }
 
-        protected void signInButtonClick(object sender, EventArgs e)
+
+        protected void SignInButtonClick(object sender, EventArgs e)
+        {
+            int AdminID = 0;
+            // string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass1\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Validate_Admin"))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                    cmd.Connection = con;
+                    con.Open();
+                    AdminID = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Close();
+                }
+                string message = string.Empty;
+                switch (AdminID)
+                {
+                    case -1:
+                        message = "Incorrect password.";
+                        break;
+                    case -2:
+                        message = "Admin does not exist. Please register.";
+                        break;
+                    default:
+                        Session["AdminID"] = AdminID; // Store the admin ID in a session variable for future use
+                        Response.Redirect("ItemManagement.aspx");
+                }
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+            }
+        }
+
+
+        /*protected void signInButtonClick(object sender, EventArgs e)
         {
             // Perform admin authentication here
             string emailText = email.Text;
@@ -46,6 +81,6 @@ namespace kuze
         protected void okayButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("ItemManagementPage.aspx");
-        }
+        }*/
     }
 }

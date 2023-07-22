@@ -25,7 +25,7 @@ namespace kuze
             }
         }
 
-        protected void signUpButton_Click(object sender, EventArgs e)
+        /*protected void signUpButton_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
@@ -38,9 +38,49 @@ namespace kuze
             }
             // Redirect to the VerificationPage.aspx
             Response.Redirect("VerificationPage.aspx");
+        }*/
+
+        protected void SignUpButton_Click(object sender, EventArgs e)
+        {
+            AdminID = 0;
+            //constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass1\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Insert_Admin"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                        cmd.Connection = con;
+                        con.Open();
+                        AdminID = Convert.ToInt32(cmd.ExecuteScalar());
+                        con.Close();
+                    }
+                }
+                string message = string.Empty;
+                switch (AdminID)
+                {
+                    case -1:
+                        message = "Username already exists.\\nPlease choose a different username.";
+                        break;
+                    case -2:
+                        message = "Supplied email address has already been used.";
+                        break;
+                    default:
+                        message = "Registration successful. Please log-in.";
+                        Response.Redirect("AdminLogin.aspx");
+                        // SendActivationEmail(adminId);
+                        break;
+                }
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+            }
         }
 
-        private void SetCookie(string name, string value, DateTime expiry)
+        /*private void SetCookie(string name, string value, DateTime expiry)
         {
             // Create a new HttpCookie instance with the specified name and value
             HttpCookie cookie = new HttpCookie(name, value);
@@ -48,6 +88,6 @@ namespace kuze
             cookie.Expires = expiry;
             // Add the cookie to the response
             Response.Cookies.Add(cookie);
-        }
+        }*/
     }
 }
