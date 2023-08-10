@@ -29,7 +29,7 @@ namespace kuze
         {
             int UserID = 0;
             // string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2bef\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2product\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
             {
                 using (SqlCommand cmd = new SqlCommand("Validate_User"))
                 {

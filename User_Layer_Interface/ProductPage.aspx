@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
-    <title>Product Search Page</title>
+    <title>Product Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         /* CSS styles for the page layout and design */
@@ -14,57 +14,55 @@
         body,
         html {
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
 
         /*Nav Bar*/
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-}
-
-    .navbar p {
-        color: darkslateblue;
-        font-size: 30px;
-        font-weight: 600;
-        padding: 0 auto;
-        margin: 0 auto;
-    }
-
-.navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-    .navbar-list li {
-        display: inline;
-        margin-left: 10px;
-        text-align: center;
-    }
-
-        .navbar-list li:first-child {
-            margin-left: 0;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
         }
 
-        .navbar-list li a {
-            text-decoration: none;
-            color: #000;
-            font-weight: 500;
-            padding: 8px 10px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s;
+            .navbar p {
+                color: darkslateblue;
+                font-size: 30px;
+                font-weight: 600;
+                padding: 0 auto;
+                margin: 0 auto;
+            }
+
+        .navbar-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .navbar-list li a:hover {
-            border-color: #ffc107;
-            font-weight: 600;
-        }
+            .navbar-list li {
+                display: inline;
+                margin-left: 10px;
+                text-align: center;
+            }
+
+                .navbar-list li:first-child {
+                    margin-left: 0;
+                }
+
+                .navbar-list li a {
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: 500;
+                    padding: 8px 10px;
+                    border-bottom: 2px solid transparent;
+                    transition: border-color 0.3s;
+                }
+
+                    .navbar-list li a:hover {
+                        border-color: #ffc107;
+                        font-weight: 600;
+                    }
 
         #header {
             background-image: url(images/searchbackground.jpg);
@@ -202,9 +200,11 @@
 
         .dropdown {
             width: 100%;
+            margin-left: 16px;
         }
 
         .quantity-input {
+            margin-left: 20px;
             width: 40px;
         }
 
@@ -258,9 +258,6 @@
             align-items: flex-end;
         }
 
-        .dropdown {
-            margin-right: 5px;
-        }
 
         .quantity-input,
         .size-input {
@@ -268,44 +265,42 @@
         }
 
         .footer {
-        background-color: lightslategrey;
-        color:white;
-        padding: 30px;
-        text-align: center;
-        margin-top: 100px;
+            background-color: lightslategrey;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 100px;
         }
 
 
-/* Media Queries for Responsive Design */
-@media only screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 10px;
-    }
+        /* Media Queries for Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 10px;
+            }
 
-    .navbar-logo {
-        margin-bottom: 10px;
-    }
+            .navbar-logo {
+                margin-bottom: 10px;
+            }
 
-    .navbar-list li {
-        display: block;
-        margin: 5px 0;
-    }
+            .navbar-list li {
+                display: block;
+                margin: 5px 0;
+            }
 
-    .footer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+            .footer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
 
-    .footer p {
-        flex-basis: 50%;
-    }
+                .footer p {
+                    flex-basis: 50%;
+                }
     </style>
 </head>
-
 <body>
-    
     <!--Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-logo">
@@ -341,126 +336,48 @@
             <div class="sidebar">
                 <div>Refine your results</div>
                 <div>Category</div>
-                <a href="#">Clothes</a>
-                <a href="#">Pants</a>
-                <a href="#">Hoodies</a>
-                <a href="#">Dresses</a>
+                <a href="ProductPage.aspx">All</a>
+                <!-- Link to show all products -->
+                <a href="ProductPage.aspx?category=Clothes">Clothes</a>
+                <a href="ProductPage.aspx?category=Pants">Pants</a>
+                <a href="ProductPage.aspx?category=Hoodies">Hoodies</a>
+                <a href="ProductPage.aspx?category=Dresses">Dresses</a>
+                <a href="ProductPage.aspx?category=Accessories">Accessories</a>
             </div>
 
             <!-- Products section -->
             <div class="products">
                 <!-- Example Product -->
-                <div class="product" data-productid="1">
-                    <img src="../images/tshirt.jpg?" alt="product name" />
-                    <div class="product-name">Biker Jacket</div>
-                    <div class="stars">★★★★★</div>
-                    <div class="price">$99.99</div>
-                    <div class="product-details">
-                        <div class="dropdown">
-                            <asp:DropDownList ID="quantityDropdown1" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                            </asp:DropDownList>
+                <asp:Repeater ID="productRepeater" runat="server" OnItemDataBound="productRepeater_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="product" data-productid='<%# Eval("ProductId") %>'>
+                            <img src='<%# "/Images/" + Eval("ImageUrl") %>' alt='<%# "Image for " + Eval("Name") %>' />
+                            <div class="product-name"><%# Eval("Name") %></div>
+                            <div class="stars">★★★★★</div>
+                            <div class="price"><%# Eval("Price", "{0:C}") %></div>
+                            <div class="product-details">
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="quantityDropdown" runat="server" CssClass="quantity-input">
+                                        <asp:ListItem Text="1" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="2" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="3" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="4" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="dropdown">
+                                    <asp:Button ID="addToCartButton" runat="server" CssClass="addToCartButton" OnClick="addToCartButton_Click" Text="Add to Cart" CommandArgument='<%# Eval("ProductId") %>' />
+                                </div>
+                            </div>
                         </div>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="sizeDropdown1" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
-                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:Button ID="addToCartButton1" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="1" />
-                        </div>
-                    </div>
-                </div>
-                <div class="product" data-productid="2">
-                    <img src="../images/varsityjacket.jpg?" alt="product name" />
-                    <div class="product-name">Varsity Jacket</div>
-                    <div class="stars">★★★★★</div>
-                    <div class="price">$129.99</div>
-                    <div class="product-details">
-                        <div class="dropdown">
-                            <asp:DropDownList ID="quantityDropdown2" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="sizeDropdown2" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
-                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:Button ID="addToCartButton2" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="2" />
-                        </div>
-                    </div>
-                </div>
-                <div class="product" data-productid="3">
-                    <img src="../images/sexyskirt.jpg?" alt="product name" />
-                    <div class="product-name">Sexy Skirt</div>
-                    <div class="stars">★★★★</div>
-                    <div class="price">$39.99</div>
-                    <div class="product-details">
-                        <div class="dropdown">
-                            <asp:DropDownList ID="quantityDropdown3" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-
-                            <asp:DropDownList ID="sizeDropdown3" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
-                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:Button ID="addToCartButton3" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="3" />
-                        </div>
-                    </div>
-                </div>
-                <div class="product" data-productid="4">
-                    <img src="../images/bikini.jpg?" alt="product name" />
-                    <div class="product-name">Bikini</div>
-                    <div class="stars">★★★</div>
-                    <div class="price">$15.59</div>
-                    <div class="product-details">
-                        <div class="dropdown">
-                            <asp:DropDownList ID="quantityDropdown4" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                                <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                                <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:DropDownList ID="sizeDropdown4" runat="server" CssClass="quantity-input">
-                                <asp:ListItem Text="S" Value="S"></asp:ListItem>
-                                <asp:ListItem Text="M" Value="M"></asp:ListItem>
-                                <asp:ListItem Text="L" Value="L"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                        <div class="dropdown">
-                            <asp:Button ID="addToCartButton4" runat="server" CssClass="addToCartButton" Text="Add to Cart" OnClick="AddToCart_Click" CommandArgument="4" />
-                        </div>
-                    </div>
-                </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </form>
-    <!--Footer--> 
+    <!--Footer-->
     <footer class="footer">
-      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        <p>© 2023 KUZE by ekoism. All rights reserved.</p>
     </footer>
 </body>
 

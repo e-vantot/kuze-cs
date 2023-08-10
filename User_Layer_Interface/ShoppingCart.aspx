@@ -1,93 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShoppingCart.aspx.cs" Inherits="kuze.ShoppingCart" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<html>
+<head>
     <title>Shopping Cart</title>
-    <style>
-        body, div, span {
-            font-family: 'Inter', sans-serif;
-            color: #808080;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start; /* Align content at the top */
-            height: 100vh;
-        }
-
-        .title {
-            font-size: 32px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .product-image {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-        }
-
-        .price {
-            font-size: 16px;
-            color: #FF6699;
-        }
-
-        .quantity {
-            font-size: 16px;
-            color: #808080;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .checkout-btn {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .footer {
-        background-color: lightslategrey;
-        color:white;
-        padding: 30px;
-        text-align: center;
-        margin-top: 100px;
-        }
-
-        
-    @media screen and (max-width: 768px) {
-     /* Media query for mobile devices */
-
-    .footer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .footer p {
-        flex-basis: 50%;
-    }
-    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="CartStyles.css" />
 </head>
 <body>
-   `<!--Navigation Bar -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-logo">
             <p>KUZE</p>
@@ -106,6 +30,8 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="title">Shopping Cart</div>
+            <% if (TotalCartPrice > 0)
+                { %>
             <table>
                 <tr>
                     <th style="width: 20%;">Product Image</th>
@@ -114,36 +40,51 @@
                     <th style="width: 15%;">Quantity</th>
                     <th style="width: 15%;">Total Price</th>
                 </tr>
-                <% foreach (CartItem item in CartItems) { %>
-                    <tr>
-                        <td>
-                            <div class="product-image">
-                                <img class="product-image" src=".././Images/<%= item.ProductImage %>" alt="<%= item.ProductImage %>" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="product-name"><%= item.ProductName %></div>
-                        </td>
-                        <td>
-                            <div class="price">$<%= item.Price %></div>
-                        </td>
-                        <td>
-                            <div class="quantity">Quantity: <%= item.Quantity %></div>
-                        </td>
-                        <td>
-                            <div class="price">$<%= item.TotalPrice %></div>
-                        </td>
-                    </tr>
-                <% } %>
+                <asp:Repeater ID="cartRepeater" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <div class="product-image">
+                                    <img class="product-image" src='<%# "/Images/" + Eval("ImageURL") %>' alt='<%# Eval("ProductName") %>' />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-name"><%# Eval("ProductName") %></div>
+                            </td>
+                            <td>
+                                <div class="price">$<%# Eval("Price") %></div>
+                            </td>
+                            <td>
+                                <div class="quantity">Quantity: <%# Eval("Quantity") %></div>
+                            </td>
+                            <td>
+                                <div class="price">$<%# Eval("TotalPrice") %></div>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <tr>
+                    <td colspan="5" class="total-price-cell">Total Cart Price: $<%= TotalCartPrice %>
+                    </td>
+                </tr>
             </table>
             <div class="checkout-btn">
-                <asp:Button ID="btnCheckout" runat="server" Font-Bold="True" Font-Names="Calibri" Text="C H E C K O U T" OnClick="Checkout_Click" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
+                <asp:Button ID="btnCheckout" runat="server" Text="C H E C K O U T" Font-Bold="True" Font-Names="Calibri" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
             </div>
+            <% }
+                else
+                { %>
+            <div class="empty-cart-message">Shopping Cart is Empty</div>
+            <div class="checkout-btn">
+                <asp:Button ID="btnStartShopping" runat="server" Text="S H O P   H E R E" OnClick="btnStartShopping_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
+            </div>
+            <% } %>
         </div>
     </form>
-    <!--Footer--> 
+
+    <!-- Footer -->
     <footer class="footer">
-      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        <p>© 2023 KUZE by ekoism. All rights reserved.</p>
     </footer>
 </body>
 </html>

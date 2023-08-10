@@ -115,6 +115,7 @@
     <Content Include="User_Layer_Interface\AboutUsStyles.css" />
     <Content Include="User_Layer_Interface\AdminLogin.aspx" />
     <Content Include="User_Layer_Interface\AdminRegistration.aspx" />
+    <Content Include="User_Layer_Interface\CartStyles.css" />
     <Content Include="User_Layer_Interface\ContactUs.aspx" />
     <Content Include="User_Layer_Interface\ContactUsStyles.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -197,6 +198,8 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="User_Layer_Interface\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

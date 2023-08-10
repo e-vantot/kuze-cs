@@ -1,226 +1,150 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace kuze
 {
     public partial class ProductPage : System.Web.UI.Page
     {
+        private string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2product\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;";
+
         protected decimal totalPrice = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                InitializeCart();
-                LoadCartItems();
+                string selectedCategory = Request.QueryString["category"]; // Get selected category from query string
+                BindProductData(selectedCategory);
             }
         }
 
-        protected void AddToCart_Click(object sender, EventArgs e)
+        protected void BindProductData(string category)
         {
-            Button btn = (Button)sender;
-            int productId = Convert.ToInt32(btn.CommandArgument);
-            string productName = GetProductName(productId);
-            decimal price = GetProductPrice(productId);
-            int quantity = GetSelectedQuantity(productId);
-            string size = GetProductSize(productId);
-            string productImage = GetProductImage(productId);
-
-            // Calculate the total price
-            totalPrice = CalculateTotalPrice();
-
-            CartItem cartItem = new CartItem(productId, productName, price, quantity, size, productImage, totalPrice);
-            AddItemToCart(cartItem);
-
-            LoadCartItems();
-        }
-
-        private void InitializeCart()
-        {
-            if (Session["CartItems"] == null)
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                List<CartItem> cartItems = new List<CartItem>();
-                Session["CartItems"] = cartItems;
-            }
-        }
+                string query = "SELECT * FROM Product";
 
-        private void AddItemToCart(CartItem item)
-        {
-            List<CartItem> cartItems = (List<CartItem>)Session["CartItems"];
-            cartItems.Add(item);
-        }
-
-        private List<CartItem> GetCartItems()
-        {
-            List<CartItem> cartItems = new List<CartItem>();
-
-            // Retrieve the cart items from the session
-            if (Session["CartItems"] != null)
-            {
-                cartItems = (List<CartItem>)Session["CartItems"];
-            }
-
-            return cartItems;
-        }
-
-        private decimal CalculateTotalPrice()
-        {
-        decimal totalPrice = 0;
-
-        // Retrieve the cart items from the session or storage mechanism
-        List<CartItem> cartItems = GetCartItems();
-
-        // Calculate the total price by summing up the prices multiplied by quantities
-        foreach (CartItem cartItem in cartItems)
-        {
-            totalPrice += cartItem.Price * cartItem.Quantity;
-        }
-
-        return totalPrice;
-    }
-
-        private string GetProductName(int productId)
-        {
-            // Retrieve the product name based on the product ID.
-            // Replace this with your logic to fetch the product name from the database or any other data source.
-            switch (productId)
-            {
-                case 1:
-                    return "Biker Jacket";
-                case 2:
-                    return "Varsity Jacket";
-                case 3:
-                    return "Sexy Skirt";
-                case 4:
-                    return "Bikini";
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private decimal GetProductPrice(int productId)
-        {
-            // Retrieve the product price based on the product ID.
-            // Replace this with your logic to fetch the product price from the database or any other data source.
-            switch (productId)
-            {
-                case 1:
-                    return 99.99m;
-                case 2:
-                    return 129.99m;
-                case 3:
-                    return 39.99m;
-                case 4:
-                    return 15.59m;
-                default:
-                    return 0.00m;
-            }
-        }
-
-        private int GetSelectedQuantity(int productId)
-        {
-            DropDownList quantityDropdown;
-            switch (productId)
-            {
-                case 1:
-                    quantityDropdown = quantityDropdown1;
-                    break;
-                case 2:
-                    quantityDropdown = quantityDropdown2;
-                    break;
-                case 3:
-                    quantityDropdown = quantityDropdown3;
-                    break;
-                case 4:
-                    quantityDropdown = quantityDropdown4;
-                    break;
-                default:
-                    return 0;
-            }
-
-            return Convert.ToInt32(quantityDropdown.SelectedValue);
-        }
-
-        private string GetProductSize(int productId)
-        {
-            DropDownList sizeDropdown;
-            switch (productId)
-            {
-                case 1:
-                    sizeDropdown = sizeDropdown1;
-                    return sizeDropdown.SelectedValue;
-                case 2:
-                    sizeDropdown = sizeDropdown2;
-                    return sizeDropdown.SelectedValue;
-                case 3:
-                    sizeDropdown = sizeDropdown3;
-                    return sizeDropdown.SelectedValue;
-                case 4:
-                    sizeDropdown = sizeDropdown4;
-                    return sizeDropdown.SelectedValue;
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private string GetProductImage(int productId)
-        {
-            // Retrieve the product image URL based on the product ID.
-            // Replace this with your logic to fetch the product image URL from the database or any other data source.
-            switch (productId)
-            {
-                case 1:
-                    return "tshirt.jpg";
-                case 2:
-                    return "varsityjacket.jpg";
-                case 3:
-                    return "sexyskirt.jpg";
-                case 4:
-                    return "bikini.jpg";
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private void LoadCartItems()
-        {
-            List<CartItem> cartItems = (List<CartItem>)Session["CartItems"];
-            decimal totalPrice = CalculateTotalPrice(); // Calculate the total price
-
-            if (cartItems != null)
-            {
-                // Display the cart items on the page.
-                // You can modify this part to suit your layout and design.
-                foreach (CartItem item in cartItems)
+                if (!string.IsNullOrEmpty(category))
                 {
-                    // Add code to display the cart items on the page
+                    query += " WHERE Category = @Category";
+                }
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    adapter.SelectCommand.Parameters.AddWithValue("@Category", category);
+                }
+
+                DataTable productTable = new DataTable();
+                adapter.Fill(productTable);
+
+                productRepeater.DataSource = productTable;
+                productRepeater.DataBind();
+            }
+        }
+
+        protected void productRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DataRowView rowView = e.Item.DataItem as DataRowView;
+                if (rowView != null)
+                {
+                    string productName = rowView["Name"].ToString();
+                    decimal productPrice = Convert.ToDecimal(rowView["Price"]);
+
+                    // Find controls in the Repeater item
+                    Label nameLabel = e.Item.FindControl("product-name-label") as Label;
+                    Label priceLabel = e.Item.FindControl("product-price-label") as Label;
+
+                    // Check if the controls were found
+                    if (nameLabel != null && priceLabel != null)
+                    {
+                        // Set the values of the labels
+                        nameLabel.Text = productName;
+                        priceLabel.Text = productPrice.ToString("C");
+                    }
                 }
             }
         }
-    }
-}
 
-public class CartItem
-{
-    public int ProductId { get; set; }
-    public string ProductName { get; set; }
-    public decimal Price { get; set; }
-    public int Quantity { get; set; }
-    public string Size { get; set; }
-    public string ProductImage { get; set; }
-    public decimal TotalPrice { get; set; }
+        private string GetOrCreateCartID()
+        {
+            string cartID = "";
 
-    public CartItem(int productId, string productName, decimal price, int quantity, string size, string productImage, decimal totalPrice)
-    {
-        ProductId = productId;
-        ProductName = productName;
-        Price = price;
-        Quantity = quantity;
-        Size = Size;
-        ProductImage = productImage;
-        TotalPrice = totalPrice;
+            if (Session["CartID"] != null)
+            {
+                cartID = Session["CartID"].ToString();
+            }
+            else
+            {
+                // Insert a new row into the Cart table to get the auto-generated cartID
+                cartID = InsertNewCartAndGetID(); // You need to implement this method
+
+                // Store the cart ID in the session for future reference
+                Session["CartID"] = cartID;
+            }
+
+            return cartID;
+        }
+
+        private string InsertNewCartAndGetID()
+        {
+            string newCartID = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Cart (TotalPrice) VALUES (0); SELECT SCOPE_IDENTITY()";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    newCartID = command.ExecuteScalar().ToString();
+                }
+            }
+
+            return newCartID;
+        }
+
+        protected void addToCartButton_Click(object sender, EventArgs e)
+        {
+            Button addButton = (Button)sender;
+            int productID = Convert.ToInt32(addButton.CommandArgument);
+
+            // Find the corresponding quantity dropdown in the Repeater item
+            RepeaterItem repeaterItem = (RepeaterItem)addButton.NamingContainer;
+            DropDownList quantityDropdown = repeaterItem.FindControl("quantityDropdown") as DropDownList;
+            int quantity = Convert.ToInt32(quantityDropdown.SelectedValue);
+
+            // Add the item to the cart in the database
+            AddToCart(productID, quantity);
+
+            // Optionally, you can redirect to the shopping cart page after adding to cart
+            Response.Redirect("ShoppingCart.aspx");
+        }
+
+        private void AddToCart(int productID, int quantity)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string cartID = GetOrCreateCartID(); // Get or create the cart ID
+
+                string query = "INSERT INTO CartItem (ProductID, Quantity, CartID) VALUES (@ProductID, @Quantity, @CartID)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ProductID", productID);
+                    command.Parameters.AddWithValue("@Quantity", quantity);
+                    command.Parameters.AddWithValue("@CartID", cartID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
