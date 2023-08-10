@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace kuze
 {
@@ -29,8 +32,12 @@ namespace kuze
         protected void SignInButton_Click(object sender, EventArgs e)
         {
             int AdminID = 0;
+            string password = txtPassword.Text.Trim(); // Get the provided password
+
+            // Hash the provided password
+            string hashedPassword = encryption(password);
             // string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2product\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\CST\\Source\\Repos\\kuzebyekoism\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
             {
                 using (SqlCommand cmd = new SqlCommand("Validate_Admin"))
                 {
@@ -49,7 +56,7 @@ namespace kuze
                         lblErrorMessage.Visible = true;
                         break;
                     case -2:
-                        lblErrorMessage.Text = "User does not exist. Please register.";
+                        lblErrorMessage.Text = "Admin does not exist. Please try again.";
                         lblErrorMessage.Visible = true;
                         break;
                     default:
@@ -60,31 +67,48 @@ namespace kuze
             }
         }
 
-
-        /*protected void signInButtonClick(object sender, EventArgs e)
+        public string encryption(String password)
         {
-            // Perform admin authentication here
-            string emailText = email.Text;
-            string passwordText = password.Text;
-
-            if (emailText != "" && passwordText != "")
+            using (MD5 md5 = MD5.Create())
             {
-                // Set the admin ID in the session
-                Session["AdminID"] = 123;
+                byte[] encrypt;
+                UTF8Encoding encode = new UTF8Encoding();
+                encrypt = md5.ComputeHash(encode.GetBytes(password));
+                StringBuilder encryptdata = new StringBuilder();
+                for (int i = 0; i < encrypt.Length; i++)
+                {
+                    encryptdata.Append(encrypt[i].ToString("x2")); // Convert each byte to a hexadecimal string
+                }
+                return encryptdata.ToString();
+            }
 
-                // Show the admin mode modal
-                adminModeModal.Visible = true;
-                adminModeModal.Style.Add("display", "block");
-            }
-            else
+
+            /*protected void signInButtonClick(object sender, EventArgs e)
             {
-                // Display an error message or perform other actions for failed login
+                // Perform admin authentication here
+                string emailText = email.Text;
+                string passwordText = password.Text;
+
+                if (emailText != "" && passwordText != "")
+                {
+                    // Set the admin ID in the session
+                    Session["AdminID"] = 123;
+
+                    // Show the admin mode modal
+                    adminModeModal.Visible = true;
+                    adminModeModal.Style.Add("display", "block");
+                }
+                else
+                {
+                    // Display an error message or perform other actions for failed login
+                }
             }
+
+            protected void okayButton_Click(object sender, EventArgs e)
+            {
+                Response.Redirect("ItemManagementPage.aspx");
+            }*/
         }
 
-        protected void okayButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ItemManagementPage.aspx");
-        }*/
     }
 }

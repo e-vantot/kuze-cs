@@ -36,10 +36,6 @@
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <asp:Button ID="signInButton" runat="server" Text="SIGN IN" CssClass="signInButton" BackColor="#9D786F" ForeColor="White" Height="45px" OnClick="SignInButton_Click" ValidationGroup="signInGroup" />
                         <asp:Label ID="lblErrorMessage" runat="server" CssClass="finalErrorMessage" Visible="false"></asp:Label>                        
-                        <span class="spanContainer">
-                            <p>Don't have an account?</p>
-                            <a style="margin-left: 5px;" href="AdminRegistration.aspx">Sign Up</a>
-                        </span>
                     </div>
                 </div>
             </div>
