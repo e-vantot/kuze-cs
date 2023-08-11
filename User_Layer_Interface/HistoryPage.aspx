@@ -215,7 +215,7 @@
     </nav>
 
     <!-- Page title -->
-    <div class="title">Orders</div>
+    <div class="title">Your Orders</div>
 
     <!-- Purchase history section -->
     <div class="purchase-history">
@@ -230,7 +230,7 @@
                 <div>06/08/2023</div>
             </div>
             <div class="header-item">
-                <span class="header-label">Delivery Date:</span>
+                <span class="header-label">Delivery Status:</span>
                 <div>06/15/2023</div>
             </div>
         </div>
@@ -245,6 +245,9 @@
             <div class="product-info">
                 <span class="product-name">T-shirt Name</span>
                 <span class="product-size">Size: M</span>
+            </div>
+            <div class="shippping">
+                $20.00
             </div>
             <div class="product-price">
                 $20.00
