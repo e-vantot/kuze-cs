@@ -37,37 +37,43 @@
         <p>Want to get in touch with team KUZÉ? Send your query to us directly using the form below or:
             For customer care and general enquiries: <a href="mailto:hello@kuze.com">hello@kuze.com</a></p><!-- Email address as a link -->
         &nbsp;
-        <form runat="server">
+        <form runat="server" method="Post">
             <div class="form-group">
                 <!-- layout input for Name & Email side by side-->
                 <div class="form-itemleft">
                     <label for="txtUsername">NAME</label>
-                    <input type="email" id="txtUsername" runat="server" />
+                    <asp:TextBox id="txtUsername" runat="server" ></asp:TextBox>
                     <!--Validation for Name Input-->
-                    <asp:RequiredFieldValidator ID="rfvUsername" runat="server" ControlToValidate="txtUsername"
+                    <asp:RequiredFieldValidator id="rfvUsername" runat="server" ControlToValidate="txtUsername"
                         ErrorMessage="Please enter your name." Text="*This field is required." ForeColor="Red" ValidationGroup="FormValidation" />
                 </div>
                 <div class="form-itemright">
                     <label for="txtEmail">EMAIL</label>
-                    <input type="email" id="txtEmail" runat="server" />
+                    <asp:TextBox id="txtEmail" runat="server" type="email"></asp:TextBox>
                     <!-- Validation for Email Input-->
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                    <asp:RequiredFieldValidator id="rfvEmail" runat="server" ControlToValidate="txtEmail"
                         ErrorMessage="Please enter your email address." Text="*This field is required." ForeColor="Red" ValidationGroup="FormValidation" />
-                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+                    <asp:RegularExpressionValidator id="revEmail" runat="server" ControlToValidate="txtEmail"
                         ErrorMessage="Please enter a valid email address." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                         Text="*Please enter a valid email address." ForeColor="Red" ValidationGroup="FormValidation" />
                 </div>
-                <!-- Input for Message-->
-                <label for="txtMessage">MESSAGE</label>
-                <input type="text" id="txtMessage" runat="server" />
-                <!-- Validation for Message Input-->
-                <asp:RequiredFieldValidator ID="rfvMessage" runat="server" ControlToValidate="txtMessage"
-                    ErrorMessage="Please enter your message." Text="*This field is required." ForeColor="Red" ValidationGroup="FormValidation" />
+
+                <div class="form-itembottom">
+                    <!-- Input for Message-->
+                    <label for="txtMessage">MESSAGE</label>
+                    <asp:TextBox id="txtMessage" runat="server" type="text"></asp:TextBox>
+                    <!-- Validation for Message Input-->
+                    <asp:RequiredFieldValidator id="rfvMessage" runat="server" ControlToValidate="txtMessage"
+                        ErrorMessage="Please enter your message." Text="*This field is required." ForeColor="Red" ValidationGroup="FormValidation" />
+                </div>
+
             </div>
             <!-- Form Button-->
             <div class="button">
-                <input type="submit" value="SEND" runat="server" OnClick="btnSend_Click" ValidationGroup="FormValidation"/>
+                <asp:Button id="btnSubmit" type="submit" text="SUBMIT" runat="server" OnClick="BtnSend_Click" ValidationGroup="FormValidation"/>
             </div>
+
+            <div id="successMessage" class="success-message" runat="server" visible="false">Message sent! We will reach out to you soon.</div>
         </form>
         <!--Footer--> 
         <footer class="footer">

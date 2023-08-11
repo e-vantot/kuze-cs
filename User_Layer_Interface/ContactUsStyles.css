@@ -133,6 +133,17 @@
         background: #f5f5f5;
     }
 
+    .form-group input[id="txtUsername"] {
+        width: 70%;
+        padding: 20px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        background: #f5f5f5;
+    }
+
     .form-group input[type="text"] {
         width: 100%;
         padding: 20px;
@@ -146,7 +157,13 @@
 
 .form-itemleft,
 .form-itemright {
+    flex: 1;
     flex-basis: 50%;
+}
+
+.form-itembottom {
+    flex: 2;
+    flex-basis: 100%;
 }
 
 .button {
