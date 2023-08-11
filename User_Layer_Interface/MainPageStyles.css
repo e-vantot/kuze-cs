@@ -120,14 +120,16 @@
     display: flex;
     justify-items: center;
     justify-content: space-between;
-    width: 70%;
-    margin: 70px;
+    width:100%;
+    margin: 50px;
+    margin-left: 20px;
+    margin-right:20px;
 }
 
 .featured {
     text-align: center;
     justify-items: center;
-    margin: 30px;
+    margin: 20px;
     padding: 0 auto;
 }
 
@@ -137,9 +139,9 @@
     }
 
     .featured img {
-        width: 340px;
-        height: 400px;
-        max-width: 400px;
+        width: 120px;
+        height: 200px;
+        max-width: 200px;
     }
 
     .featured label {

@@ -26,6 +26,7 @@
                 <li><a href="ContactUs.aspx">Contact</a></li>
                 <li><a href="UserLogin.aspx">Account</a></li>
                 <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+                <li><a href="HistoryPage.aspx">Order History</a></li>
             </ul>
         </div>
     </nav>
@@ -44,24 +45,31 @@
         <!-- Featured Section -->
         <div class="featured-container">
             <div class="featured">
-                <img src="/Images/bestfeatured.png" alt="Best Featured" />
-                <label class="featured-item">Best Featured</label>
-                <a href="ProductPage.aspx">
+                <img src="/Images/bestfeatured.png" alt="Dress Collection 2023" />
+                <label class="featured-item">Featured Dresses</label>
+                <a href="ProductPage.aspx?category=Dresses">
                     <label>SHOP NOW</label>
                 </a>
             </div>
             <div class="featured">
                 <img src="/Images/clothingcollections.png" alt="Clothing Collections 2023" />
-                <label class="featured-item">Clothing Collections 2023</label>
-                <a href="ProductPage.aspx">
+                <label class="featured-item">Featured Tops</label>
+                <a href="ProductPage?category=Clothes">
                     <label>SHOP NOW</label>
                 </a>
             </div>
             <div class="featured">
-                <img src="/Images/ourproducts.png" alt="Our Products" />
-                <label class="featured-item">Our Products</label>
-                <a href="ProductPage.aspx">
-                    <label>LEARN MORE</label>
+                <img src="/Images/accessories.png" alt="Accessories" />
+                <label class="featured-item">Accessories</label>
+                <a href="ProductPage?category=Accessories">
+                    <label>SHOP NOW</label>
+                </a>
+            </div>
+            <div class="featured">
+                <img src="/Images/bottoms.png" alt="Bottoms" />
+                <label class="featured-item">Featured Bottoms</label>
+                <a href="ProductPage?category=Pants">
+                    <label>SHOP NOW</label>
                 </a>
             </div>
         </div>

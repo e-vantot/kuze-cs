@@ -110,6 +110,8 @@
     <Content Include="App_Data\KuzeDB_log.ldf">
       <DependentUpon>KuzeDB.mdf</DependentUpon>
     </Content>
+    <Content Include="images\accessories.png" />
+    <Content Include="images\bottoms.png" />
     <Content Include="images\kuze.png" />
     <Content Include="User_Layer_Interface\AboutUs.aspx" />
     <Content Include="User_Layer_Interface\AboutUsStyles.css" />

@@ -24,6 +24,7 @@
                 <li><a href="ContactUs.aspx">Contact</a></li>
                 <li><a href="UserLogin.aspx">Account</a></li>
                 <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+                <li><a href="HistoryPage.aspx">Order History</a></li>
             </ul>
 
         </div>

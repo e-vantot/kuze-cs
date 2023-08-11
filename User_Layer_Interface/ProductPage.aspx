@@ -122,6 +122,7 @@
 
             .sidebar a {
                 display: block;
+                color: rosybrown;
                 margin-bottom: 10px;
             }
 
@@ -152,7 +153,7 @@
 
         .stars {
             display: inline-block;
-            color: yellow;
+            color: sandybrown;
         }
 
         .price {
@@ -240,7 +241,7 @@
             padding: 10px;
             font-size: 12px;
             cursor: pointer;
-            background-color: green;
+            background-color: darkslategrey;
             color: white;
             border: none;
             border-radius: 5px;
@@ -314,6 +315,7 @@
                 <li><a href="ContactUs.aspx">Contact</a></li>
                 <li><a href="UserLogin.aspx">Account</a></li>
                 <li><a href="ShoppingCart.aspx">Your Cart</a></li>
+                <li><a href="HistoryPage.aspx">Order History</a></li>
             </ul>
         </div>
     </nav>
