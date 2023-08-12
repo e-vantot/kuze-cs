@@ -40,6 +40,7 @@
         #thank-you-text, #review-text {
             color: #808080;
             text-align: center;
+            padding-bottom:20px;
         }
 
         #thank-you-text {
@@ -129,6 +130,19 @@
             margin-bottom: 20px;
         }
 
+        #payment-failed-image {
+            max-width: 200px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        #payment-failed-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #808080;
+            text-align:center;
+        }
+
         /* Media query for mobile */
         @media screen and (max-width: 768px) {
             #container {
@@ -178,29 +192,20 @@
         <div id="container">
             <!-- Thank you message -->
             <div id="thank-you-text">Thank you for your order!</div>
-            <!-- Review text -->
-            <div id="review-text">Review your order information below</div>
             <div id="message-container">
                 <!-- Order details -->
                 <div class="order-details">
-                    <div id="order-date">20/03/2023</div>
-                    <div id="order-number">Order: 1728492</div>
+                    <div id="order-date">
+                        Order Date:
+                        <asp:Label ID="lblDate" runat="server" Text="Date"></asp:Label>
+                    </div>
+                    <div id="order-number">
+                        Order Number:
+                        <asp:Label ID="lblPaymentID" runat="server" Text="PaymentID"></asp:Label>
+                    </div>
                 </div>
-                <!-- Horizontal line -->
-                <div id="horizontal-line"></div>
-                <!-- Items -->
-                <div id="items">Items</div>
-                <div id="status">Status: Shipping soon</div>
-                <!-- Horizontal line -->
-                <div id="horizontal-line2"></div>
-                <!-- Product details -->
-                <img class="product-image" src="../images/tshirt.jpg" alt="Product Image">
-                <div class="product-info">
-                    <div>T-Shirt</div>
-                    <div>Size: M</div>
-                    <div>Qty: 1</div>
-                </div>
-                <div class="product-price">$20</div>
+                <img id="payment-failed-image" src="../images/order-processed.png" alt="Image">
+                <div id="payment-failed-text">Your order is being processed</div>
             </div>
         </div>
     </form>

@@ -11,7 +11,8 @@ namespace kuze
 {
     public partial class ShoppingCart : System.Web.UI.Page
     {
-        private string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\CST\\Source\\Repos\\kuzebyekoism\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"; // Replace with your actual connection string
+        private string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\62895\\Source\\Repos\\kuzefinal\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"; // Replace with your actual connection string
+
         public decimal TotalCartPrice { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,6 +21,31 @@ namespace kuze
             {
                 PopulateShoppingCart();
             }
+        }
+        public decimal GetTotalCartPriceForCartID(string cartID)
+        {
+            decimal totalPrice = 0.00m;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string cartQuery = "SELECT TotalPrice FROM Cart WHERE CartID = @CartID";
+                using (SqlCommand cartCommand = new SqlCommand(cartQuery, connection))
+                {
+                    cartCommand.Parameters.AddWithValue("@CartID", cartID);
+
+                    object result = cartCommand.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalPrice = Convert.ToDecimal(result);
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return totalPrice;
         }
 
         private void PopulateShoppingCart()
@@ -77,6 +103,14 @@ namespace kuze
                         UpdateCartTotalPrice(cartID, totalCartPrice);
 
                         TotalCartPrice = totalCartPrice;
+
+                        TotalCartPrice = cartItems.Sum(item => item.TotalPrice);
+
+                        // Store the total cart price in the session for future reference
+                        Session["TotalCartPrice"] = TotalCartPrice;
+
+                        // Store the number of items in the shopping cart in the session for future reference
+                        Session["TotalCartItems"] = cartItems.Count;
 
                         // Bind cart items to the Repeater
                         cartRepeater.DataSource = cartItems;
@@ -149,6 +183,11 @@ namespace kuze
         {
             // Redirect the user to the ProductPage.aspx
             Response.Redirect("ProductPage.aspx");
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Payment.aspx");
         }
 
 

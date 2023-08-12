@@ -58,9 +58,9 @@
             padding: 10px;
         }
 
-        .payment-option.selected {
-            background-color: #d3d3d3;
-        }
+            .payment-option.selected {
+                background-color: #d3d3d3;
+            }
 
         .payment-icon {
             width: 40px;
@@ -131,12 +131,23 @@
         }
 
         .footer {
-        background-color: lightslategrey;
-        color:white;
-        padding: 30px;
-        text-align: center;
-        margin-top: 100px;
+            background-color: lightslategrey;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 100px;
         }
+
+        .side-by-side-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .half-input {
+            width: 48%;
+        }
+
 
 
         @media screen and (max-width: 768px) {
@@ -161,229 +172,229 @@
                 margin-bottom: 20px;
             }
 
-            
+
             .footer {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
             }
 
-            .footer p {
-                flex-basis: 50%;
-            }
+                .footer p {
+                    flex-basis: 50%;
+                }
         }
     </style>
 </head>
 <body>
-    <h1 id="title">kuzé by ekoism</h1>
+    <form runat="server">
+        <h1 id="title">kuzé by ekoism</h1>
 
-    <div class="container">
-        <!-- Left Content -->
-        <div class="left-content">
-            <h2 class="header">Payment</h2>
-            <div class="payment-options">
-                <!-- Payment options for users to choose from -->
-                <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="../images/card.png" alt="Card">
+        <div class="container">
+            <!-- Left Content -->
+            <div class="left-content">
+                <h2 class="header">Payment</h2>
+
+                <!-- User input fields -->
+
+                <h2 class="header">Name</h2>
+                <div class="input-wrapper" id="name-input-wrapper">
+                    <asp:TextBox CssClass="text-input" ID="nameInput" runat="server" placeholder="John Doe"></asp:TextBox>
                 </div>
-                <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="../images/paypal.png" alt="PayPal">
+
+                <h2 class="header">Street Address</h2>
+                <div class="input-wrapper" id="address-input-wrapper">
+                    <asp:TextBox CssClass="text-input" ID="addressInput" runat="server" placeholder="123 Main St"></asp:TextBox>
                 </div>
-                <div class="payment-option" onclick="selectPaymentOption(this)">
-                    <img class="payment-icon" src="../images/applepay.png" alt="Apple Pay">
+
+                <h2 class="header">Zip Code</h2>
+                <div class="input-wrapper" id="zip-code-input-wrapper">
+                    <asp:TextBox CssClass="text-input" ID="zipcodeInput" runat="server" placeholder="12345"></asp:TextBox>
+                </div>
+
+                <h2 class="header">Shipping</h2>
+                <div class="input-wrapper" id="shipping-input-wrapper">
+                    <asp:DropDownList CssClass="text-input" ID="shippingInput" runat="server">
+                        <asp:ListItem Text="Select shipping option..." Value=""></asp:ListItem>
+                        <asp:ListItem Text="J&T Express" Value="J&T Express"></asp:ListItem>
+                        <asp:ListItem Text="UPS" Value="UPS"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+
+                <!-- Card Payment Details -->
+
+                <h2 class="header">Card Number</h2>
+                <div class="input-wrapper" id="card-number-input-wrapper">
+                    <asp:TextBox CssClass="text-input" ID="cardNumberInput" runat="server" placeholder="1234 5678 9101 1121"></asp:TextBox>
+                </div>
+
+                <h2 class="header">Cardholder Name</h2>
+                <div class="input-wrapper" id="cardholder-name-input-wrapper">
+                    <asp:TextBox CssClass="text-input" ID="cardholderNameInput" runat="server" placeholder="John Doe"></asp:TextBox>
+                </div>
+
+                <h2 class="header">Expiry Date & CVV</h2>
+                <div class="side-by-side-container">
+                    <div class="input-wrapper half-input" id="expiry-date-input-wrapper">
+                        <asp:TextBox CssClass="text-input" ID="expiryDateInput" runat="server" placeholder="MM/YYYY"></asp:TextBox>
+                    </div>
+                    <div class="input-wrapper half-input" id="cvv-input-wrapper">
+                        <asp:TextBox CssClass="text-input" ID="cvvInput" runat="server" placeholder="CVV"></asp:TextBox>
+                    </div>
+                </div>
+
+                <!-- Gift wrap option -->
+                <input type="checkbox" id="giftWrap" name="giftWrap">
+                <label for="giftWrap">Gift wrap this order</label>
+
+                <!-- Order placement information -->
+                <p>By clicking "Place Order," you agree to pay for your purchase, understand potential delivery delays, accept our return/refund policy, and consent to our privacy policy. You also confirm that all the information you have provided is accurate.</p>
+
+                <!-- Place order button -->
+                <asp:Button ID="btnSubmitPayment" runat="server" OnClick="btnSubmitPayment_Click" Text="Submit Payment" UseSubmitBehavior="false" />
+
+            </div>
+
+            <!-- Right Content -->
+            <div class="right-content">
+                <!-- Order summary box -->
+                <div class="summary-box">
+                    <h3 class="summary-header">Summary</h3>
+                    <div class="summary-line"></div>
+                    <div class="summary-item">
+                        <asp:Label ID="lblTotalItems" runat="server">0 items</asp:Label>
+                    </div>
+                    <div class="summary-line"></div>
+                    <div class="summary-item">
+                        <span>Product total</span>
+                        <asp:Label ID="lblProductTotal" runat="server">$0</asp:Label>
+                    </div>
+                    <div class="summary-item">
+                        <span>FREE Shipping</span>
+                        <span>Always</span>
+                    </div>
+                    <div class="summary-line"></div>
+                    <div class="summary-item">
+                        <span>Total</span>
+                        <asp:Label ID="lblTotalPrice" runat="server">$0</asp:Label>
+                    </div>
+                </div>
+
+                <!-- Additional features -->
+                <div class="features">
+                    <img src="../images/cross.png" alt="icon" class="icon">
+                    <span>Free, easy cancellation</span>
+                </div>
+                <div class="features">
+                    <img src="../images/truck.png" alt="icon" class="icon">
+                    <span>Free shipping, always</span>
                 </div>
             </div>
 
-            <!-- User input fields -->
-            <h2 class="header">Name</h2>
-            <div class="input-wrapper" id="name-input-wrapper">
-                <input class="text-input" type="text" id="name-input">
-            </div>
-
-            <h2 class="header">Street Address</h2>
-            <div class="input-wrapper" id="address-input-wrapper">
-                <input class="text-input" type="text" id="address-input">
-            </div>
-
-            <h2 class="header">Zip Code</h2>
-            <div class="input-wrapper" id="zip-code-input-wrapper">
-                <input class="text-input" type="text" id="zip-code-input">
-            </div>
-
-            <h2 class="header">Shipping</h2>
-            <div class="input-wrapper" id="shipping-input-wrapper">
-                <select class="text-input" id="shipping-input">
-                    <option value="">Select shipping option...</option>
-                    <option>J&T Express</option>
-                    <option>UPS</option>
-                </select>
-            </div>
-
-            <!-- Gift wrap option -->
-            <input type="checkbox" id="giftWrap" name="giftWrap">
-            <label for="giftWrap">Gift wrap this order</label>
-
-            <!-- Order placement information -->
-            <p>By clicking "Place Order," you agree to pay for your purchase, understand potential delivery delays, accept our return/refund policy, and consent to our privacy policy. You also confirm that all the information you have provided is accurate.</p>
-
-            <!-- Place order button -->
-            <button id="place-order-button" onclick="placeOrder()">Place Order</button>
         </div>
 
-        <!-- Right Content -->
-        <div class="right-content">
-            <!-- Order summary box -->
-            <div class="summary-box">
-                <h3 class="summary-header">Summary</h3>
-                <div class="summary-line"></div>
-                <div class="summary-item">2 items</div>
-                <div class="summary-line"></div>
-                <div class="summary-item">
-                    <span>Product total</span>
-                    <span>$40</span>
-                </div>
-                <div class="summary-item">
-                    <span>FREE Shipping</span>
-                    <span>Always</span>
-                </div>
-                <div class="summary-line"></div>
-                <div class="summary-item">
-                    <span>Total</span>
-                    <span>$40</span>
-                </div>
-            </div>
 
-            <!-- Additional features -->
-            <div class="features">
-                <img src="../images/cross.png" alt="icon" class="icon">
-                <span>Free, easy cancellation</span>
-            </div>
-            <div class="features">
-                <img src="../images/truck.png" alt="icon" class="icon">
-                <span>Free shipping, always</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript code for interactivity -->
-    <script>
-        // Function to select a payment option
-        function selectPaymentOption(element) {
-            var options = document.querySelectorAll('.payment-option');
-            options.forEach(function (opt) {
-                opt.classList.remove('selected');
-            });
-            element.classList.add('selected');
-            removeExclamationMark(document.querySelector('.payment-options')); // Add this line
-        }
-
-        // Function to place an order
-        function placeOrder() {
-            var nameInput = document.getElementById('name-input');
-            var nameInputWrapper = document.getElementById('name-input-wrapper');
-            var addressInput = document.getElementById('address-input');
-            var addressInputWrapper = document.getElementById('address-input-wrapper');
-            var zipCodeInput = document.getElementById('zip-code-input');
-            var zipCodeInputWrapper = document.getElementById('zip-code-input-wrapper');
-            var shippingInput = document.getElementById('shipping-input');
-            var shippingInputWrapper = document.getElementById('shipping-input-wrapper');
-            var paymentOptions = document.querySelector('.payment-options');
-            var paymentSelected = document.querySelector('.payment-option.selected');
-
-            // Remove any existing exclamation marks
-            var exclamationMarks = document.querySelectorAll('.exclamation-mark');
-            exclamationMarks.forEach(function (mark) {
-                mark.remove();
-            });
-
-            // Validate name
-            if (!nameInput.value) {
-                addExclamationMark(nameInputWrapper, "Name is required.");
+        <!-- JavaScript code for interactivity -->
+        <script>
+            // Function to select a payment option
+            function selectPaymentOption(element) {
+                var options = document.querySelectorAll('.payment-option');
+                options.forEach(function (opt) {
+                    opt.classList.remove('selected');
+                });
+                element.classList.add('selected');
+                removeExclamationMark(document.querySelector('.payment-options'));
             }
 
-            // Validate address
-            if (!addressInput.value) {
-                addExclamationMark(addressInputWrapper, "Address is required.");
-            }
+            // Function to place an order
+            function placeOrder() {
+                var nameInput = document.getElementById('nameInput');
+                var nameInputWrapper = document.getElementById('name-input-wrapper');
+                var addressInput = document.getElementById('addressInput');
+                var addressInputWrapper = document.getElementById('address-input-wrapper');
+                var zipCodeInput = document.getElementById('zipcodeInput');
+                var zipCodeInputWrapper = document.getElementById('zip-code-input-wrapper');
+                var shippingInput = document.getElementById('shippingInput');
+                var shippingInputWrapper = document.getElementById('shipping-input-wrapper');
 
-            // Validate zip code
-            if (!zipCodeInput.value) {
-                addExclamationMark(zipCodeInputWrapper, "Zip code is required.");
-            }
+                // Remove any existing exclamation marks
+                var exclamationMarks = document.querySelectorAll('.exclamation-mark');
+                exclamationMarks.forEach(function (mark) {
+                    mark.remove();
+                });
 
-            // Validate shipping method
-            if (!shippingInput.value) {
-                addExclamationMark(shippingInputWrapper, "Shipping option is required.");
-            }
+                // Validate name
+                if (!nameInput.value) {
+                    addExclamationMark(nameInputWrapper, "Name is required.");
+                }
 
-            // Validate payment method
-            if (!paymentSelected) {
-                addExclamationMark(paymentOptions, "Payment method is required.");
-            }
+                // Validate address
+                if (!addressInput.value) {
+                    addExclamationMark(addressInputWrapper, "Address is required.");
+                }
 
-            // If all fields are valid, proceed to random redirection
-            if (nameInput.value && addressInput.value && zipCodeInput.value && shippingInput.value && paymentSelected) {
-                var randomNumber = Math.random();
-                if (randomNumber < 0.5) {
-                    window.location.href = 'paymentSuccessful.aspx';
-                } else {
-                    window.location.href = 'paymentUnsuccessful.aspx';
+                // Validate zip code
+                if (!zipCodeInput.value) {
+                    addExclamationMark(zipCodeInputWrapper, "Zip code is required.");
+                }
+
+                // Validate shipping method
+                if (!shippingInput.value) {
+                    addExclamationMark(shippingInputWrapper, "Shipping option is required.");
                 }
             }
-        }
 
-        // Function to add an exclamation mark and error message
-        function addExclamationMark(element, message) {
-            var exclamationMark = document.createElement('span');
-            exclamationMark.className = 'exclamation-mark';
-            exclamationMark.textContent = "❗";
-            exclamationMark.title = message;
-            element.appendChild(exclamationMark);
-        }
-
-        // Function to remove exclamation marks
-        function removeExclamationMark(wrapperElement) {
-            var exclamationMark = wrapperElement.querySelector('.exclamation-mark');
-            if (exclamationMark) {
-                exclamationMark.remove();
+            // Function to add an exclamation mark and error message
+            function addExclamationMark(element, message) {
+                var exclamationMark = document.createElement('span');
+                exclamationMark.className = 'exclamation-mark';
+                exclamationMark.textContent = "❗";
+                exclamationMark.title = message;
+                element.appendChild(exclamationMark);
             }
-        }
 
-        // Event listeners for input fields
-        document.addEventListener("DOMContentLoaded", function () {
-            var nameInput = document.getElementById('name-input');
-            var addressInput = document.getElementById('address-input');
-            var zipCodeInput = document.getElementById('zip-code-input');
-            var shippingInput = document.getElementById('shipping-input');
-            var paymentOptions = document.querySelectorAll('.payment-option');
+            // Function to remove exclamation marks
+            function removeExclamationMark(wrapperElement) {
+                var exclamationMark = wrapperElement.querySelector('.exclamation-mark');
+                if (exclamationMark) {
+                    exclamationMark.remove();
+                }
+            }
 
-            nameInput.addEventListener('input', function () {
-                removeExclamationMark(document.getElementById('name-input-wrapper'));
-            });
+            // Event listeners for input fields
+            document.addEventListener("DOMContentLoaded", function () {
+                var nameInput = document.getElementById('nameInput');
+                var addressInput = document.getElementById('addressInput');
+                var zipCodeInput = document.getElementById('zipcodeInput');
+                var shippingInput = document.getElementById('shippingInput');
+                var paymentOptions = document.querySelectorAll('.payment-option');
 
-            addressInput.addEventListener('input', function () {
-                removeExclamationMark(document.getElementById('address-input-wrapper'));
-            });
+                nameInput.addEventListener('input', function () {
+                    removeExclamationMark(document.getElementById('name-input-wrapper'));
+                });
 
-            zipCodeInput.addEventListener('input', function () {
-                removeExclamationMark(document.getElementById('zip-code-input-wrapper'));
-            });
+                addressInput.addEventListener('input', function () {
+                    removeExclamationMark(document.getElementById('address-input-wrapper'));
+                });
 
-            shippingInput.addEventListener('change', function () {
-                removeExclamationMark(document.getElementById('shipping-input-wrapper'));
-            });
+                zipCodeInput.addEventListener('input', function () {
+                    removeExclamationMark(document.getElementById('zip-code-input-wrapper'));
+                });
 
-            paymentOptions.forEach(function (paymentOption) {
-                paymentOption.addEventListener('click', function () {
-                    removeExclamationMark(document.querySelector('.payment-options'));
+                shippingInput.addEventListener('change', function () {
+                    removeExclamationMark(document.getElementById('shipping-input-wrapper'));
+                });
+
+                paymentOptions.forEach(function (paymentOption) {
+                    paymentOption.addEventListener('click', function () {
+                        removeExclamationMark(document.querySelector('.payment-options'));
+                    });
                 });
             });
-        });
-    </script>
-    <!--Footer--> 
-    <footer class="footer">
-      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
-    </footer>
-
+        </script>
+        <!--Footer-->
+        <footer class="footer">
+            <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        </footer>
+    </form>
 </body>
 </html>

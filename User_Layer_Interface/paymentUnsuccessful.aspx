@@ -90,16 +90,17 @@
             <div id="message-container">
                 <!-- Payment failed text -->
                 <div id="payment-failed-text">Payment Failed</div>
+                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <!-- Instruction for the user -->
                 <div id="instruction-text">Please select another payment method</div>
                 <div id="or-text">or</div>
-                <div id="save-text">save your product to the cart</div>
+                <div id="save-text">Return to cart</div>
                 <!-- Buttons section -->
                 <div id="buttons">
                     <!-- Try again button -->
                     <button id="try-again-button" type="button" onclick="redirectToPaymentPage()">Try again</button>
                     <!-- Save to cart button -->
-                    <button id="save-to-cart-button">Save to cart</button>
+                    <button id="save-to-cart-button">Return to cart</button>
                 </div>
             </div>
         </div>

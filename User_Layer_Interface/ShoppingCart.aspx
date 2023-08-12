@@ -24,7 +24,6 @@
                 <li><a href="ContactUs.aspx">Contact</a></li>
                 <li><a href="UserLogin.aspx">Account</a></li>
                 <li><a href="ShoppingCart.aspx">Your Cart</a></li>
-                <li><a href="HistoryPage.aspx">Order History</a></li>
             </ul>
         </div>
     </nav>
@@ -70,14 +69,14 @@
                 </tr>
             </table>
             <div class="checkout-btn">
-                <asp:Button ID="btnCheckout" runat="server" Text="C H E C K O U T" Font-Bold="True" Font-Names="Calibri" BackColor="#2f4f4f" ForeColor="White" Height="45px" Width="221px" />
+                <asp:Button ID="btnCheckout" runat="server" Text="C H E C K O U T" OnClick="btnCheckout_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
             </div>
             <% }
                 else
                 { %>
             <div class="empty-cart-message">Shopping Cart is Empty</div>
             <div class="checkout-btn">
-                <asp:Button ID="btnStartShopping" runat="server" Text="S H O P   H E R E" OnClick="btnStartShopping_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#2f4f4f" ForeColor="White" Height="45px" Width="221px" />
+                <asp:Button ID="btnStartShopping" runat="server" Text="S H O P   H E R E" OnClick="btnStartShopping_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
             </div>
             <% } %>
         </div>
