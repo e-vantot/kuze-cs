@@ -39,7 +39,7 @@ namespace kuze
 
         private void SaveContactFormToDatabase(string Name, string Email, string Message)
         {
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\CST\\Source\\Repos\\kuzebyekoism\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True"))
             {
                 string insertQuery = "INSERT INTO Contact (Name, Email, Message) VALUES (@Name, @Email, @Message)";
                 using (SqlCommand cmd = new SqlCommand(insertQuery, con))

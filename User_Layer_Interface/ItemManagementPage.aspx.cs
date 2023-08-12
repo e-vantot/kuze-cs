@@ -9,7 +9,7 @@ namespace kuze
 {
     public partial class ItemManagementPage : System.Web.UI.Page
     {
-        string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\CST\\Source\\Repos\\kuzebyekoism\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;";
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {

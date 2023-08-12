@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HistoryPage.aspx.cs" Inherits="kuze.HistoryPage" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HistoryPage.aspx.cs" Inherits="kuze.HistoryPage" %>
 
 <!-- This page displays the purchase history of the user -->
 
@@ -108,13 +108,13 @@
             max-height: 100px;
         }
 
-        .product-info {
+        .order-num {
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .product-price {
+        .order-status {
             font-weight: bold;
         }
 
@@ -162,7 +162,7 @@
                 width: 95%;
             }
 
-            .product-info {
+            .order-num {
                 flex-grow: 1;
                 margin-left: 20px;
             }
@@ -195,7 +195,7 @@
     </style>
 </head>
 <body>
-    <!--Navigation Bar -->
+     <!--Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-logo">
             <p>KUZE</p>
@@ -210,7 +210,6 @@
                 <li><a href="ShoppingCart.aspx">Your Cart</a></li>
                 <li><a href="HistoryPage.aspx">Order History</a></li>
             </ul>
-
         </div>
     </nav>
 
@@ -219,53 +218,65 @@
 
     <!-- Purchase history section -->
     <div class="purchase-history">
-        <!-- Order header section -->
-        <div class="order-header">
-            <div class="header-item">
-                <span class="header-label">Order Number:</span>
-                <div>#12345</div>
-            </div>
-            <div class="header-item">
-                <span class="header-label">Date of Order:</span>
-                <div>06/08/2023</div>
-            </div>
-            <div class="header-item">
-                <span class="header-label">Delivery Status:</span>
-                <div>06/15/2023</div>
-            </div>
-        </div>
 
-        <hr />
+        <!-- Loop through the order details from the database -->
+
+                <div class="order-header">
+                    <div class="header-item">
+                        <span class="header-label">Order Number:</span>
+                    </div>
+                    <div class="header-item">
+                        <span class="header-label">Date of Order:</span>
+                    </div>
+                    <div class="header-item">
+                        <span class="header-label">Status:</span>
+                    </div>
+                </div>
+
+                <hr />
 
         <!-- Order details section -->
-        <div class="order-details">
-            <div class="product-image">
-                <img src="../images/tshirt.jpg" alt="T-shirt Image" />
-            </div>
-            <div class="product-info">
+        <asp:Repeater ID="Repeater1" runat="server">
+            <ItemTemplate>
+                <div class="order-details">
+                    <div class="order-num">
+                        <%# Eval("OrderID") %>
+                    </div>
+                    <div class="order-date">
+                        <%# Eval("Date", "{0:d}") %>
+                    </div>
+                    <div class="order-status">
+                        <%# Eval("Status") %>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+
+    </div>
+
+
+        <!-- Order details section -->
+        <!--<div class="order-details">
+            <div class="order-num">
                 <span class="product-name">T-shirt Name</span>
                 <span class="product-size">Size: M</span>
             </div>
-            <div class="shippping">
+            <div class="order-date">
                 $20.00
             </div>
-            <div class="product-price">
+            <div class="order-status">
                 $20.00
             </div>
-        </div>
+        </div> -->
 
-        <!-- Order total section -->
-        <div class="order-total">
-            Total Amount: $20.00
-        </div>
-    </div>
 
-    <!-- JavaScript file -->
-    <script src="scripts.js"></script>
 
-    <!--Footer--> 
-    <footer class="footer">
-      <p>© 2023 KUZE by ekoism. All rights reserved.</p>
-    </footer>
+        <!-- JavaScript file -->
+        <script src="scripts.js"></script>
+
+        <!--Footer--> 
+        <footer class="footer">
+            <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+        </footer>
 </body>
 </html>

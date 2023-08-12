@@ -11,7 +11,7 @@ namespace kuze
 {
     public partial class ShoppingCart : System.Web.UI.Page
     {
-        private string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\62895\\Source\\Repos\\kuzefinal\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"; // Replace with your actual connection string
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True"; // Replace with your actual connection string
 
         public decimal TotalCartPrice { get; set; }
 

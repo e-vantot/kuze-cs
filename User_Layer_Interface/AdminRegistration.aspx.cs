@@ -50,7 +50,7 @@ namespace kuze
         protected void SignUpButton_Click(object sender, EventArgs e)
         {
             AdminID = 0;
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\CST\\Source\\Repos\\kuzebyekoism\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True"))
             {
                 using (SqlCommand cmd = new SqlCommand("Insert_Admin"))
                 {
@@ -58,7 +58,7 @@ namespace kuze
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Password", encryption(txtPassword.Text.Trim()));
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                         cmd.Connection = con;
                         con.Open();

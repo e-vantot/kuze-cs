@@ -11,7 +11,7 @@ namespace kuze
 {
     public partial class ProductPage : System.Web.UI.Page
     {
-        private string connectionString = "Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\62895\\Source\\Repos\\kuzefinal\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;";
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True";
 
         protected decimal totalPrice = 0;
         protected void Page_Load(object sender, EventArgs e)
