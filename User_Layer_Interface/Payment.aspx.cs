@@ -41,14 +41,13 @@ namespace kuze
                 string address = addressInput.Text;
                 string zipCode = zipcodeInput.Text;
                 string shipping = shippingInput.SelectedValue;
-                string status = "okay";
 
                 // Retrieve total amount and number of items from session
                 decimal totalAmount = (decimal)Session["TotalCartPrice"];
                 string items = $"{Session["TotalCartItems"]} items"; // You can format this string as per your requirements
 
 
-                int? paymentID = SavePaymentToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
+                int? paymentID = SaveOrderToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
                 if (paymentID.HasValue)
                 {
                     Session["PaymentID"] = paymentID.Value;
@@ -121,25 +120,20 @@ namespace kuze
                     Response.Redirect("paymentSuccessful.aspx", false);
                     Session.Remove("TotalCartPrice");
                     Session.Remove("TotalCartItems");
-
-                    SaveOrderToDatabase(shipping, totalAmount, items, "Delivering");
                 }
                 else
                 {
                     // Redirect to unsuccessful page with reason
                     Response.Redirect($"paymentUnsuccessful.aspx?reason={task.Result.TransactionResult}", false);
-
-                    SaveOrderToDatabase(shipping, totalAmount, items, "Delivering");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error Message: " + ex.Message);
-                System.Diagnostics.Debug.WriteLine("Stack Trace: " + ex.StackTrace);
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 Response.Redirect($"errorPage.aspx?msg={HttpUtility.UrlEncode(ex.Message)}", false);
             }
         }
-        private int? SavePaymentToDatabase(string name, string address, string zip, string shipping, decimal total, string items)
+        private int? SaveOrderToDatabase(string name, string address, string zip, string shipping, decimal total, string items)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -163,24 +157,6 @@ namespace kuze
                     {
                         return null;
                     }
-                }
-            }
-        }
-
-        private void SaveOrderToDatabase(string shipping, decimal total, string items, string status)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO [Order] (Shipping, TotalAmount, Items, Status, Date) OUTPUT INSERTED.OrderID VALUES (@shipping, @total, @items, @status, @date)", connection))
-                {
-                    command.Parameters.AddWithValue("@shipping", shipping);
-                    command.Parameters.AddWithValue("@total", total);
-                    command.Parameters.AddWithValue("@status", status);
-                    command.Parameters.AddWithValue("@date", DateTime.Now);
-                    command.Parameters.AddWithValue("@items", items);
-
-                    command.ExecuteNonQuery();
                 }
             }
         }

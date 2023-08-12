@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemManagementPage.aspx.cs" Inherits="kuze.ItemManagementPage"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemManagementPage.aspx.cs" Inherits="kuze.ItemManagementPage"  %>
 
 <!DOCTYPE html>
 
@@ -52,9 +52,9 @@
                             </li>
                         </ItemTemplate>
                     </asp:Repeater>
+
                 </ul>
             </nav>
-        </div>
 
   <asp:GridView ID="productGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="productGridView_RowCommand">
     <Columns>
@@ -68,7 +68,7 @@
         <asp:BoundField DataField="Category" HeaderText="Category" />
         <asp:TemplateField HeaderText="Image">
             <ItemTemplate>
-                <asp:Image runat="server" ID="imgProduct" ImageUrl='<%# Eval("ImageUrl") %>' Width="100" Height="100" />
+                <asp:Image runat="server" ID="imgProduct" ImageUrl='<%# "/Images/" + Eval("ImageUrl") %>' Width="100" Height="100" />
             </ItemTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Edit">
@@ -242,3 +242,4 @@
         </footer>
 </body>
 </html>
+

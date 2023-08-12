@@ -193,14 +193,12 @@ namespace kuze
                 }
             }
 
-            return 0; // Return a default value or handle error as per your requirement
+            return 0;
         }
 
 
         private void PopulateEditModalFields(int productID)
         {
-            // Retrieve the product information from the database based on the ProductID
-            // Query the database using a parameterized query to prevent SQL injection
             string query = "SELECT ProductID, Name, Description, Price, Size, Colour, QuantityInStock, ImageUrl,Category FROM [dbo].[Product] WHERE ProductID=@ProductID";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -224,7 +222,7 @@ namespace kuze
 
                         // Set the product image URL
                         string imageUrl = reader["ImageUrl"].ToString();
-                        editImage.ImageUrl = string.IsNullOrEmpty(imageUrl) ? "~/Images/cloth.jpg" : imageUrl;
+                        editImage.ImageUrl = string.IsNullOrEmpty(imageUrl) ? "~/Images/cloth.jpg" : "/Images/" + imageUrl;
                     }
 
                     reader.Close();
@@ -264,11 +262,6 @@ namespace kuze
                                 {
                                     // Product deleted successfully, refresh the GridView
                                     BindProductGrid();
-                                }
-                                else
-                                {
-                                    // No rows were affected, handle this case (e.g., display a message or log the error).
-
                                 }
                             }
                             catch (Exception ex)
@@ -345,16 +338,12 @@ namespace kuze
                 // Validate the Price field
                 if (!decimal.TryParse(editedProductPrice, out decimal price))
                 {
-                    // Show an error message or handle the invalid price input.
-                    // errorMessage.Text = "Invalid price format.";
                     return;
                 }
 
                 // Validate the Quantity field
                 if (!int.TryParse(productQuantity.Text, out editedProductQuantity) || editedProductQuantity < 0)
                 {
-                    // Show an error message or handle the invalid quantity input.
-                    // errorMessage.Text = "Invalid quantity format.";
                     return;
                 }
 
@@ -369,7 +358,7 @@ namespace kuze
                     productImage.SaveAs(imagePath);
 
                     // Update the image URL
-                    imageUrl = "~/Images/" + imageName;
+                    imageUrl = imageName;
                 }
 
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -393,36 +382,25 @@ namespace kuze
                             cmd.Parameters.AddWithValue("@ImageUrl", imageUrl);
                             cmd.Parameters.AddWithValue("@QuantityInStock", editedProductQuantity);
                             cmd.Parameters.AddWithValue("@Category", editedProductCategory);
-
-                            // Execute the stored procedure
                             cmd.ExecuteNonQuery();
 
-                            // Redirect to the same page after updating
                             Response.Redirect(Request.RawUrl);
                         }
                     }
                     catch (SqlException ex)
                     {
-                        // Handle SQL Server exceptions
-                        // Display the SQL exception message for debugging purposes.
                         Console.WriteLine(ex.Message);
-                        // errorMessage.Text = "An error occurred while executing the database operation: " + ex.Message;
+
                     }
                     catch (Exception ex)
                     {
-                        // Handle other exceptions
-                        // For simplicity, you can display an error message on the page.
-                        // errorMessage.Text = "An error occurred while updating the product: " + ex.Message;
+
                         Console.WriteLine(ex.Message);
                     }
                 }
 
                 // Close the modal (optional)
                 editModal.Style["display"] = "none";
-            }
-            else
-            {
-                // Handle the case when the ProductID is not a valid integer
             }
         }
 
@@ -447,9 +425,9 @@ namespace kuze
             string name = productName.Text;
             string description = productDescription.Text;
             string price = productPrice.Text;
-            string size = productSize.Text; // Assuming the size field ID is productSize
-            string colour = productColour.Text; // Assuming the colour field ID is productColour
-            int quantityInStock = 0; // Initialize the quantityInStock
+            string size = productSize.Text;
+            string colour = productColour.Text;
+            int quantityInStock = 0;
             string category = productCategory.Text;
 
             // Validate and parse the quantity in stock field
@@ -459,9 +437,6 @@ namespace kuze
             }
             else
             {
-                // If the quantity in stock is not a valid integer, handle the error as needed
-                // For example, you can display an error message on the page.
-                // errorMessage.Text = "Invalid quantity in stock format.";
                 return;
             }
 
@@ -483,24 +458,20 @@ namespace kuze
             string name = tbAddName.Text;
             string description = tbAddDescription.Text;
             string price = tbAddPrice.Text;
-            string size = tbAddSize.Text; // Assuming the size field ID is tbAddSize
-            string colour = tbAddColour.Text; // Assuming the colour field ID is tbAddColour
-            string quantityInStock = tbAddQuantity.Text; // Assuming the quantity in stock field ID is tbAddQuantityInStock
+            string size = tbAddSize.Text;
+            string colour = tbAddColour.Text;
+            string quantityInStock = tbAddQuantity.Text;
             string category = tbAddCategory.Text;
 
             // Validate the Price field
             if (!decimal.TryParse(price, out decimal parsedPrice))
             {
-                // Show an error message or handle the invalid price input.
-                // errorMessage.Text = "Invalid price format.";
                 return;
             }
 
             // Validate and parse the quantity in stock field
             if (!int.TryParse(quantityInStock, out int parsedQuantityInStock))
             {
-                // Show an error message or handle the invalid quantity in stock input.
-                // errorMessage.Text = "Invalid quantity in stock format.";
                 return;
             }
 
@@ -511,7 +482,7 @@ namespace kuze
                 string fileName = Path.GetFileName(tbAddImage.FileName);
                 string imagePath = Server.MapPath("~/images/" + fileName);
                 tbAddImage.SaveAs(imagePath);
-                imageUrl = "~/images/" + fileName;
+                imageUrl = fileName;
             }
 
             // Store the values in session variables
@@ -524,8 +495,7 @@ namespace kuze
             Session["AddedProductImageUrl"] = imageUrl; // Save the image URL in session
             Session["AddedProductCategory"] = category;
 
-            // Close the modal (optional)
-            addModal.Style["display"] = "none";
+            addModal.Style.Add("display", "none");
         }
 
 
@@ -547,16 +517,12 @@ namespace kuze
             // Validate the Price field
             if (!decimal.TryParse(addedProductPrice, out decimal price))
             {
-                // Show an error message or handle the invalid price input.
-                // errorMessage.Text = "Invalid price format.";
                 return;
             }
 
             // Validate and parse the quantity in stock field
             if (!int.TryParse(addedProductQuantityInStock, out int parsedQuantityInStock))
             {
-                // Show an error message or handle the invalid quantity in stock input.
-                // errorMessage.Text = "Invalid quantity in stock format.";
                 return;
             }
 
@@ -567,7 +533,7 @@ namespace kuze
                 string fileName = Path.GetFileName(tbAddImage.FileName);
                 string imagePath = Server.MapPath("~/Images/" + fileName);
                 tbAddImage.SaveAs(imagePath);
-                imageUrl = "~/Images/" + fileName;
+                imageUrl = fileName;
             }
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -607,29 +573,17 @@ namespace kuze
 
                             Response.Redirect(Request.Url.AbsoluteUri);
                         }
-
-                        // Rest of the code remains the same from the previous version
-
-                        // ...
                     }
                 }
                 catch (SqlException ex)
                 {
-                    // Handle SQL Server exceptions
-                    // Display the SQL exception message for debugging purposes.
                     Console.WriteLine(ex.Message);
-                    // errorMessage.Text = "An error occurred while executing the database operation: " + ex.Message;
                 }
                 catch (Exception ex)
                 {
-                    // Handle other exceptions
-                    // For simplicity, you can display an error message on the page.
-                    // errorMessage.Text = "An error occurred while adding the new product: " + ex.Message;
                     Console.WriteLine(ex.Message);
                 }
             }
-
-            // Close the modal (optional)
             addModal.Style["display"] = "none";
         }
     }

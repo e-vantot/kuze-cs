@@ -55,6 +55,13 @@ body {
                 font-weight: 600;
             }
 
+/* Add or modify the styles for your menu items */
+.menu-item {
+    /* Your styling properties here */
+    display: inline-block;
+    margin-right: 20px; /* Adjust as needed */
+}
+
 
 header {
     width: 100%;
@@ -521,3 +528,33 @@ button[type="submit"] {
             flex-basis: 50%;
         }
 }
+
+/* GridView Styles */
+#productGridView {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    #productGridView th,
+    #productGridView td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    #productGridView th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    #productGridView tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    #productGridView img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }

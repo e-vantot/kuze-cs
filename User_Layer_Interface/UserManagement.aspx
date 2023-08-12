@@ -34,55 +34,30 @@
         </header>
         <div class="container">
             <h1 class="title">Users</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>User Name</th>
-                        <th>Date Applied</th>
-                        <th>Status</th>
-                        <th>Account Type</th> <!-- New column for account type -->
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <div class="profile-picture">
-                                <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png" alt="Profile Picture" />
-                                John Doe
-                            </div>
-                        </td>
-                        <td>Jan 10, 2020</td>
-                        <td>Approved</td>
-                        <td>User</td> <!-- Account type for user -->
-                        <td>
-                            <asp:Button ID="editButton1" runat="server" CssClass="edit-button" Text="Edit" OnClick="EditButton_Click" />
-                            <asp:Button ID="deleteButton1" runat="server" CssClass="delete-button" Text="Delete" OnClick="DeleteButton_Click" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>
-                            <div class="profile-picture">
-                                <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png" alt="Profile Picture" />
-                                Jane Smith
-                            </div>
-                        </td>
-                        <td>Feb 15, 2020</td>
-                        <td>Pending</td>
-                        <td>Admin</td> <!-- Account type for admin -->
-                        <td>
-                            <asp:Button ID="editButton2" runat="server" CssClass="edit-button" Text="Edit" OnClick="EditButton_Click" />
-                            <asp:Button ID="deleteButton2" runat="server" CssClass="delete-button" Text="Delete" OnClick="DeleteButton_Click" />
-                        </td>
-                    </tr>
-                    <!-- Add more rows for additional users -->
-                </tbody>
+            <asp:GridView ID="userGridView" runat="server" AutoGenerateColumns="False" OnRowCommand="userGridView_RowCommand">
+    <Columns>
+        <asp:BoundField DataField="UserID" HeaderText="No" />
+        <asp:BoundField DataField="UserName" HeaderText="User Name" />
+        <asp:BoundField DataField="FirstName" HeaderText="First Name" />
+        <asp:BoundField DataField="LastName" HeaderText="Last Name" />
+        <asp:BoundField DataField="Email" HeaderText="Email" />
+        <asp:BoundField DataField="PhoneNumber" HeaderText="Phone Number" />
+        <asp:BoundField DataField="CreatedDate" HeaderText="Date Applied" DataFormatString="{0:MMM dd, yyyy}" />
+        <asp:BoundField DataField="LastLoginDate" HeaderText="Last Login" DataFormatString="{0:MMM dd, yyyy}" />
+        <asp:BoundField DataField="isEmailVerified" HeaderText="Email Verified" DataFormatString="{0:Yes;No}" />
+        <asp:TemplateField HeaderText="Actions">
+            <ItemTemplate>
+                <asp:Button ID="editButton" runat="server" CssClass="edit-button" Text="Edit" CommandName="EditUser" CommandArgument='<%# Eval("UserID") %>' />
+                <asp:Button ID="deleteButton" runat="server" CssClass="delete-button" Text="Delete" CommandName="DeleteUser" CommandArgument='<%# Eval("UserID") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
 
-            </table>
-            <asp:Button ID="addUserButton" runat="server" CssClass="add-user-button" Text="Add User" OnClick="AddUserButton_Click" />
+            <asp:HiddenField ID="hfEditedUserID" runat="server" />
+
+
+           <!-- <asp:Button ID="addUserButton" runat="server" CssClass="add-user-button" Text="Add User" OnClick="AddUserButton_Click" /> -->
         </div>
 
         <!-- Add User Modal -->
@@ -95,8 +70,16 @@
                 <asp:TextBox ID="username" runat="server" CssClass="modal-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="usernameValidator" runat="server" ControlToValidate="username" CssClass="error-message" ErrorMessage="Username is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
 
+                <asp:Label ID="lblFirstName" runat="server" AssociatedControlID="firstName" Text="First Name:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="firstName" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="firstNameValidator" runat="server" ControlToValidate="firstName" CssClass="error-message" ErrorMessage="First name is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+
+                <asp:Label ID="lblLastName" runat="server" AssociatedControlID="lastName" Text="Last Name:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="lastName" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="lastNameValidator" runat="server" ControlToValidate="lastName" CssClass="error-message" ErrorMessage="Last name is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+
                 <asp:Label ID="lblEmail" runat="server" AssociatedControlID="email" Text="Email Address:" CssClass="modal-label"></asp:Label>
-                <asp:TextBox ID="email" runat="server"  CssClass="modal-input"></asp:TextBox>
+                <asp:TextBox ID="email" runat="server" CssClass="modal-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="emailValidator" runat="server" ControlToValidate="email" CssClass="error-message" ErrorMessage="Email address is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="emailFormatValidator" runat="server" ControlToValidate="email" CssClass="error-message" ErrorMessage="Invalid email address format." Font-Size="12px" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"></asp:RegularExpressionValidator>
 
@@ -118,9 +101,18 @@
                 </asp:DropDownList>
                 <asp:RequiredFieldValidator ID="accountTypeValidator" runat="server" ControlToValidate="accountType" CssClass="error-message" ErrorMessage="Account type is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
 
-                <asp:Button ID="addButton" runat="server" Text="Add" OnClick="AddButton_Click" CssClass="margin-button"  />
+                <asp:Label ID="lblPassword" runat="server" AssociatedControlID="password" Text="Password:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="password" runat="server" TextMode="Password" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="passwordValidator" runat="server" ControlToValidate="password" CssClass="error-message" ErrorMessage="Password is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+
+                <asp:Label ID="lblPhoneNumber" runat="server" AssociatedControlID="phoneNumber" Text="Phone Number:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="phoneNumber" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="phoneNumberValidator" runat="server" ControlToValidate="phoneNumber" CssClass="error-message" ErrorMessage="Phone number is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+
+                <asp:Button ID="addButton" runat="server" Text="Add" OnClick="AddButton_Click" CssClass="margin-button" />
             </div>
         </asp:Panel>
+
 
 
         <!-- Edit User Modal -->
@@ -130,31 +122,31 @@
                 <h2>Edit User</h2>
 
                 <asp:Label ID="lblEditUsername" runat="server" AssociatedControlID="editUsername" Text="Username:" CssClass="modal-label"></asp:Label>
-                <asp:TextBox ID="editUsername" runat="server" Text="Sample" CssClass="modal-input"></asp:TextBox>
+                <asp:TextBox ID="editUsername" runat="server" CssClass="modal-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="editUsernameValidator" runat="server" ControlToValidate="editUsername" CssClass="error-message" ErrorMessage="Username is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
 
+                <!-- New Fields -->
+                <asp:Label ID="lblEditFirstName" runat="server" AssociatedControlID="editFirstName" Text="First Name:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="editFirstName" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="editFirstNameValidator" runat="server" ControlToValidate="editFirstName" CssClass="error-message" ErrorMessage="First Name is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+
+                <asp:Label ID="lblEditLastName" runat="server" AssociatedControlID="editLastName" Text="Last Name:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="editLastName" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="editLastNameValidator" runat="server" ControlToValidate="editLastName" CssClass="error-message" ErrorMessage="Last Name is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+                <!-- End of New Fields -->
+
                 <asp:Label ID="lblEditEmail" runat="server" AssociatedControlID="editEmail" Text="Email Address:" CssClass="modal-label"> </asp:Label>
-                <asp:TextBox ID="editEmail" runat="server" Text="Sample" CssClass="modal-input"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="editEmailValidator" runat="server" ControlToValidate="editEmail"  CssClass="error-message" ErrorMessage="Email address is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="editEmailFormatValidator" runat="server" ControlToValidate="editEmail"  CssClass="error-message" ErrorMessage="Invalid email address format." Font-Size="12px" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"></asp:RegularExpressionValidator>
+                <asp:TextBox ID="editEmail" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="editEmailValidator" runat="server" ControlToValidate="editEmail" CssClass="error-message" ErrorMessage="Email address is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="editEmailFormatValidator" runat="server" ControlToValidate="editEmail" CssClass="error-message" ErrorMessage="Invalid email address format." Font-Size="12px" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"></asp:RegularExpressionValidator>
 
-                <asp:Label ID="lblEditAddress" runat="server" AssociatedControlID="editAddress" Text="Address:" CssClass="modal-label"></asp:Label>
-                <asp:TextBox ID="editAddress" runat="server" Text="Sample" CssClass="modal-input"></asp:TextBox>
 
-                <asp:Label ID="lblEditStatus" runat="server" AssociatedControlID="editStatus" Text="Status:" CssClass="modal-label"></asp:Label>
-                <asp:DropDownList ID="editStatus" runat="server">
-                    <asp:ListItem Text="Pending" Value="pending"></asp:ListItem>
-                    <asp:ListItem Text="Approved" Value="approved"></asp:ListItem>
-                    <asp:ListItem Text="Denied" Value="denied"></asp:ListItem>
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="editStatusValidator" runat="server"  CssClass="error-message" ControlToValidate="editStatus" Font-Size="12px" ForeColor="Red" ErrorMessage="Status is required." Display="Dynamic"></asp:RequiredFieldValidator>
+                <!-- New PhoneNumber Field -->
+                <asp:Label ID="lblEditPhoneNumber" runat="server" AssociatedControlID="editPhoneNumber" Text="Phone Number:" CssClass="modal-label"></asp:Label>
+                <asp:TextBox ID="editPhoneNumber" runat="server" CssClass="modal-input"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="editPhoneNumberValidator" runat="server" ControlToValidate="editPhoneNumber" CssClass="error-message" ErrorMessage="Phone Number is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
+                <!-- End of New PhoneNumber Field -->
 
-                <asp:Label ID="Label1" runat="server" AssociatedControlID="accountType" Text="Account Type:" CssClass="modal-label"></asp:Label>
-                <asp:DropDownList ID="editAccountType" runat="server" CssClass="modal-input">
-                    <asp:ListItem Text="User" Value="user" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Admin" Value="admin"></asp:ListItem>
-                </asp:DropDownList>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="accountType" CssClass="error-message" ErrorMessage="Account type is required." Display="Dynamic" Font-Size="12px" ForeColor="Red"></asp:RequiredFieldValidator>
 
                 <asp:Button ID="updateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" CssClass="margin-button" />
             </div>
