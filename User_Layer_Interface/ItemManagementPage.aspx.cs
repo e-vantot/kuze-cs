@@ -295,7 +295,7 @@ namespace kuze
                 {
                     con.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("DeleteProductById", con))
+                    using (SqlCommand cmd = new SqlCommand("DeleteProduct", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ProductID", productID);
