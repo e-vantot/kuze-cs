@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace kuze
 {
@@ -35,7 +38,7 @@ namespace kuze
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Password", encryption(txtPassword.Text.Trim()));
                     cmd.Connection = con;
                     con.Open();
                     UserID = Convert.ToInt32(cmd.ExecuteScalar());
@@ -58,6 +61,22 @@ namespace kuze
                         break;
                 }
             }
+        }
+
+        public string encryption(String password)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] encrypt;
+            UTF8Encoding encode = new UTF8Encoding();
+            //encrypt the given password string into Encrypted data  
+            encrypt = md5.ComputeHash(encode.GetBytes(password));
+            StringBuilder encryptdata = new StringBuilder();
+            //Create a new string by using the encrypted data  
+            for (int i = 0; i < encrypt.Length; i++)
+            {
+                encryptdata.Append(encrypt[i].ToString());
+            }
+            return encryptdata.ToString();
         }
 
         /*protected void signInButtonClick(object sender, EventArgs e)
