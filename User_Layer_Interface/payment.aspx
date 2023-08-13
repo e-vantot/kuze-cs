@@ -224,7 +224,7 @@
 
                 <h2 class="header">Card Number</h2>
                 <div class="input-wrapper" id="card-number-input-wrapper">
-                    <asp:TextBox CssClass="text-input" ID="cardNumberInput" runat="server" placeholder="1234 5678 9101 1121"></asp:TextBox>
+                    <asp:TextBox CssClass="text-input" ID="cardNumberInput" runat="server" placeholder="1234567891011121"></asp:TextBox>
                 </div>
 
                 <h2 class="header">Cardholder Name</h2>
@@ -251,6 +251,7 @@
 
                 <!-- Place order button -->
                 <asp:Button ID="btnSubmitPayment" runat="server" OnClick="btnSubmitPayment_Click" Text="Submit Payment" UseSubmitBehavior="false" />
+                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="false"></asp:Label>
 
             </div>
 
@@ -295,15 +296,6 @@
 
         <!-- JavaScript code for interactivity -->
         <script>
-            // Function to select a payment option
-            function selectPaymentOption(element) {
-                var options = document.querySelectorAll('.payment-option');
-                options.forEach(function (opt) {
-                    opt.classList.remove('selected');
-                });
-                element.classList.add('selected');
-                removeExclamationMark(document.querySelector('.payment-options'));
-            }
 
             // Function to place an order
             function placeOrder() {

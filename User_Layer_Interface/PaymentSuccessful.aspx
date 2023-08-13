@@ -143,6 +143,18 @@
             text-align:center;
         }
 
+        #buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #save-to-cart-button {
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
         /* Media query for mobile */
         @media screen and (max-width: 768px) {
             #container {
@@ -206,8 +218,17 @@
                 </div>
                 <img id="payment-failed-image" src="../images/order-processed.png" alt="Image">
                 <div id="payment-failed-text">Your order is being processed</div>
+                <div id="buttons">
+                    <!-- Save to cart button -->
+                    <button id="save-to-cart-button" type="button" onclick="redirecttoproductpage()">Continue Shopping</button>
+                </div>
             </div>
         </div>
     </form>
+    <script>
+        function redirecttoproductpage() {
+            window.location.href = "productpage.aspx";
+        }
+    </script>
 </body>
 </html>

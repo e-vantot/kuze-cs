@@ -37,6 +37,17 @@ namespace kuze
         {
             try
             {
+                // Form validation
+                if (string.IsNullOrEmpty(nameInput.Text) || string.IsNullOrEmpty(addressInput.Text) ||
+                    string.IsNullOrEmpty(zipcodeInput.Text) || string.IsNullOrEmpty(cardholderNameInput.Text) ||
+                    string.IsNullOrEmpty(cardNumberInput.Text) || string.IsNullOrEmpty(expiryDateInput.Text) ||
+                    string.IsNullOrEmpty(cvvInput.Text) || string.IsNullOrEmpty(shippingInput.SelectedValue))
+                {
+                    lblErrorMessage.Text = "Please fill in all fields.";
+                    lblErrorMessage.Visible = true;
+                    return;
+                }
+
                 string customerName = nameInput.Text;
                 string address = addressInput.Text;
                 string zipCode = zipcodeInput.Text;
@@ -45,19 +56,6 @@ namespace kuze
                 // Retrieve total amount and number of items from session
                 decimal totalAmount = (decimal)Session["TotalCartPrice"];
                 string items = $"{Session["TotalCartItems"]} items"; // You can format this string as per your requirements
-
-
-                int? paymentID = SaveOrderToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
-                if (paymentID.HasValue)
-                {
-                    Session["PaymentID"] = paymentID.Value;
-                }
-                else
-                {
-                    // Handle error: Failed to retrieve PaymentID.
-                    Response.Redirect($"errorPage.aspx?msg=Failed to retrieve PaymentID.", false);
-                    return;
-                }
 
 
                 // Retrieve form input using FindControl method to get the controls by their ID
@@ -107,7 +105,7 @@ namespace kuze
                     Amount = totalAmount,
                     Description = "Order Payment"
                 };
-
+                lblErrorMessage.Visible = false;
                 // Make payment
                 var task = paymentSystem.MakePayment(payment);
                 task.Wait();
@@ -116,10 +114,22 @@ namespace kuze
 
                 if (task.Result.TransactionResult == TransactionResult.Approved)
                 {
+                    int? paymentID = SaveOrderToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
+                    if (paymentID.HasValue)
+                    {
+                        Session["PaymentID"] = paymentID.Value;
+                    }
+                    else
+                    {
+                        // Handle error: Failed to retrieve PaymentID.
+                        Response.Redirect($"errorPage.aspx?msg=Failed to retrieve PaymentID.", false);
+                        return;
+                    }
+
                     // Redirect to success page
                     Response.Redirect("paymentSuccessful.aspx", false);
-                    Session.Remove("TotalCartPrice");
-                    Session.Remove("TotalCartItems");
+
+                    ClearShoppingCartSession();
                 }
                 else
                 {
@@ -132,6 +142,13 @@ namespace kuze
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 Response.Redirect($"errorPage.aspx?msg={HttpUtility.UrlEncode(ex.Message)}", false);
             }
+        }
+
+        private void ClearShoppingCartSession()
+        {
+            Session.Remove("CartID");
+            Session.Remove("TotalCartPrice");
+            Session.Remove("TotalCartItems");
         }
         private int? SaveOrderToDatabase(string name, string address, string zip, string shipping, decimal total, string items)
         {

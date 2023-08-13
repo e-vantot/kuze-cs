@@ -100,7 +100,7 @@
                     <!-- Try again button -->
                     <button id="try-again-button" type="button" onclick="redirectToPaymentPage()">Try again</button>
                     <!-- Save to cart button -->
-                    <button id="save-to-cart-button">Return to cart</button>
+                    <button id="save-to-cart-button" type="button" onclick="redirecttocartpage()">Return to cart</button>
                 </div>
             </div>
         </div>
@@ -109,6 +109,9 @@
         // Function to redirect to the payment page
         function redirectToPaymentPage() {
             window.location.href = "payment.aspx";
+        }
+        function redirecttocartpage() {
+            window.location.href = "ShoppingCart.aspx";
         }
     </script>
 </body>

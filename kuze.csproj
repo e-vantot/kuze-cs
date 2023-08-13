@@ -201,9 +201,9 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="images\Payment system\INFT3050PaymentFactory.cs" />
-    <Compile Include="images\Payment system\INFT3050PaymentSystem.cs" />
-    <Compile Include="images\Payment system\IPaymentSystem.cs" />
+    <Compile Include="Payment system\INFT3050PaymentFactory.cs" />
+    <Compile Include="Payment system\INFT3050PaymentSystem.cs" />
+    <Compile Include="Payment system\IPaymentSystem.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="User_Layer_Interface\AboutUs.aspx.cs">
