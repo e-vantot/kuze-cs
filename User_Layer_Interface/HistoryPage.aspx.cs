@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 
+
 namespace kuze
 {
     public partial class HistoryPage : System.Web.UI.Page
@@ -13,44 +14,53 @@ namespace kuze
         {
             if (!IsPostBack)
             {
-                BindOrderHistory();
-            }
-        }
-
-        private void BindOrderHistory()
-        {
-            DataTable dt = GetDataFromDatabase(); // Replace with actual data retrieval code
-
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
-        }
-        private DataTable GetDataFromDatabase()
-        {
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                if (Session["UserID"] != null)
                 {
-                    string query = "SELECT OrderID, [Date], [Status] FROM [Order] ORDER BY [OrderDate] DESC";
+                    int userID = Convert.ToInt32(Session["UserID"]);
 
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable();
+                    // Query the database to retrieve orders for the current user
+                    DataTable ordersTable = GetOrdersByUserID(userID);
 
-                    connection.Open();
-                    adapter.Fill(dt);
-                    connection.Close();
-
-                    return dt; // Return the DataTable
+                    if (ordersTable.Rows.Count > 0)
+                    {
+                        rptOrders.DataSource = ordersTable; // rptOrders is the ID of your Repeater control
+                        rptOrders.DataBind();
+                        lblNoOrdersFound.Visible = false; // Hide the "No orders found" message label
+                    }
+                    else
+                    {
+                        rptOrders.Visible = false; // Hide the Repeater control when no orders are found
+                        lblNoOrdersFound.Visible = true; // Show the "No orders found" message label
+                    }
+                }
+                else
+                {
+                    lblMessage.Text = "Please log in to view your orders."; // Display a message indicating the user is not logged in
+                    rptOrders.Visible = false; // Hide the Repeater control when the user is not logged in
+                    lblNoOrdersFound.Visible = false; // Hide the "No orders found" message label
                 }
             }
-            catch (Exception )
+        }
+
+        private DataTable GetOrdersByUserID(int userID)
+        {
+            DataTable ordersTable = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                // Log or display the exception message
-                // ex.Message will give you more information about the error
-                return null; // Or handle the situation based on your application's logic
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [Order] WHERE UserID = @UserID", con))
+                {
+                    cmd.Parameters.AddWithValue("@UserID", userID);
+                    con.Open();
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(ordersTable);
+                    }
+                }
             }
+
+            return ordersTable;
         }
     }
 }

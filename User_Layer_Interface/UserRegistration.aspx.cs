@@ -46,7 +46,7 @@ namespace kuze
         protected void SignUpButton_Click(object sender, EventArgs e)
         {
             UserID = 0;
-            using (SqlConnection con = new SqlConnection("Server=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\incen\\source\\repos\\kuze-ass2product\\App_Data\\KuzeDB.mdf;Trusted_Connection=True;"))
+            using (SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True"))
             {
                 using (SqlCommand cmd = new SqlCommand("Insert_User"))
                 {

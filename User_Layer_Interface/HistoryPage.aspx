@@ -127,7 +127,13 @@
         .header-item {
             text-align: center;
         }
-
+        .sub-label{
+            font-size: 15px;
+        }
+        .error-message {
+            font-size: medium;
+            font-weight: 500;
+        }
 
         .footer {
             background-color: lightslategrey;
@@ -223,37 +229,45 @@
 
                 <div class="order-header">
                     <div class="header-item">
-                        <span class="header-label">Order Number:</span>
+                        <span class="header-label">Order Number</span>
+                        <span class="sub-label"> Date:</span>
                     </div>
                     <div class="header-item">
-                        <span class="header-label">Date of Order:</span>
+                        <span class="header-label">Number of Items:</span>
                     </div>
                     <div class="header-item">
-                        <span class="header-label">Status:</span>
+                        <span class="header-label">Total Amount:</span>
+                    </div>
+                    <div class="header-item">
+                        <span class="header-label">Delivery Status:</span>
+                        <span class="sub-label"> Shipping Option:  </span>
                     </div>
                 </div>
 
                 <hr />
 
         <!-- Order details section -->
-        <asp:Repeater ID="Repeater1" runat="server">
+        <asp:Repeater ID="rptOrders" runat="server">
             <ItemTemplate>
                 <div class="order-details">
                     <div class="order-num">
-                        <%# Eval("OrderID") %>
+                        <span> <%# Eval("OrderID") %></span>
+                        <span> <%# Eval("Date") %> </span>
                     </div>
-                    <div class="order-date">
-                        <%# Eval("Date", "{0:d}") %>
+                    <div class="order-total">
+                        <span> <%# Eval("TotalAmount") %></span>
                     </div>
                     <div class="order-status">
-                        <%# Eval("Status") %>
-                    </div>
+                        <span> <%# Eval("Status") %> </span>
+                        <span>  <%# Eval("Shipping") %></span>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+        <asp:Label ID="lblNoOrdersFound" runat="server" class="error-message" Visible="false"> You have no orders yet! Browse our products to shop now.</asp:Label>
 
     </div>
 
+    <asp:Label ID="lblMessage" runat="server" class="error-message" Visible="false"></asp:Label>
 
         <!-- Order details section -->
         <!--<div class="order-details">
@@ -269,7 +283,21 @@
             </div>
         </div> -->
 
-
+               <!-- <div class="order-num">
+                        <%# Eval("OrderID") %>
+                    </div>
+                    <div class="order-date">
+                        <%# Eval("Date", "{0:d}") %>
+                    </div>
+                    <div class="order-status">
+                        <%# Eval("Items") %>
+                    </div>
+                    <div class="order-status">
+                        <%# Eval("TotalAmount") %>
+                    </div>
+                    <div class="order-status">
+                        <%# Eval("Status") %>
+                    </div> -->
 
         <!-- JavaScript file -->
         <script src="scripts.js"></script>
