@@ -35,7 +35,7 @@ namespace kuze
                 }
                 else
                 {
-                    lblMessage.Text = "Please log in to view your orders."; // Display a message indicating the user is not logged in
+                    lblMessage.Visible = true; // Display a message indicating the user is not logged in
                     rptOrders.Visible = false; // Hide the Repeater control when the user is not logged in
                     lblNoOrdersFound.Visible = false; // Hide the "No orders found" message label
                 }

@@ -133,6 +133,7 @@
         .error-message {
             font-size: medium;
             font-weight: 500;
+            text-align:center;
         }
 
         .footer {
@@ -267,7 +268,7 @@
 
     </div>
 
-    <asp:Label ID="lblMessage" runat="server" class="error-message" Visible="false"></asp:Label>
+    <asp:Label ID="lblMessage" runat="server" class="error-message" Visible="false">Please log in to view your orders.</asp:Label>
 
         <!-- Order details section -->
         <!--<div class="order-details">
