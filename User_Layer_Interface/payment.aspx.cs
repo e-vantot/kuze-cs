@@ -48,6 +48,7 @@ namespace kuze
                     return;
                 }
 
+                int userId = (int)Session["UserID"];
                 string customerName = nameInput.Text;
                 string address = addressInput.Text;
                 string zipCode = zipcodeInput.Text;
@@ -114,7 +115,8 @@ namespace kuze
 
                 if (task.Result.TransactionResult == TransactionResult.Approved)
                 {
-                    int? paymentID = SaveOrderToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
+                    int? paymentID = SavePaymentToDatabase(customerName, address, zipCode, shipping, totalAmount, items);
+                    SaveOrderToDatabase(userId, shipping, totalAmount, items, "Delivering");
                     if (paymentID.HasValue)
                     {
                         Session["PaymentID"] = paymentID.Value;
@@ -135,6 +137,8 @@ namespace kuze
                 {
                     // Redirect to unsuccessful page with reason
                     Response.Redirect($"paymentUnsuccessful.aspx?reason={task.Result.TransactionResult}", false);
+
+                    SaveOrderToDatabase(userId, shipping, totalAmount, items, "Cancelled");
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace kuze
             Session.Remove("TotalCartPrice");
             Session.Remove("TotalCartItems");
         }
-        private int? SaveOrderToDatabase(string name, string address, string zip, string shipping, decimal total, string items)
+        private int? SavePaymentToDatabase(string name, string address, string zip, string shipping, decimal total, string items)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -174,6 +178,26 @@ namespace kuze
                     {
                         return null;
                     }
+                }
+            }
+        }
+
+        private void SaveOrderToDatabase(int userId, string shipping, decimal total, string items, string status)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("INSERT INTO [Order] (UserID, Shipping, TotalAmount, Items, Status, Date) OUTPUT INSERTED.OrderID VALUES (@userId, @shipping, @total, @items, @status, @date)", connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.Parameters.AddWithValue("@shipping", shipping);
+                    command.Parameters.AddWithValue("@total", total);
+                    command.Parameters.AddWithValue("@status", status);
+                    command.Parameters.AddWithValue("@date", DateTime.Now);
+                    command.Parameters.AddWithValue("@items", items);
+
+                    int orderId = (int)command.ExecuteScalar();
+                    // You can use the orderId as needed
                 }
             }
         }
