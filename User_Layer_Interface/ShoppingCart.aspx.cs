@@ -191,6 +191,15 @@ namespace kuze
             Response.Redirect("ProductPage.aspx");
         }
 
+        protected void btnClearShopping_Click(object sender, EventArgs e)
+        {
+            // Redirect the user to the ProductPage.aspx and clear cart
+            Session.Remove("CartID");
+            Session.Remove("TotalCartPrice");
+            Session.Remove("TotalCartItems");
+            Response.Redirect("ProductPage.aspx");
+        }
+
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Payment.aspx");

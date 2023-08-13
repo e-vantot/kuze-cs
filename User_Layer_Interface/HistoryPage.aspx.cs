@@ -9,6 +9,7 @@ namespace kuze
 {
     public partial class HistoryPage : System.Web.UI.Page
     {
+        private string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\KuzeDB.mdf;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,23 +45,23 @@ namespace kuze
 
         private DataTable GetOrdersByUserID(int userID)
         {
-            DataTable ordersTable = new DataTable();
-
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [Order] WHERE UserID = @UserID", con))
-                {
-                    cmd.Parameters.AddWithValue("@UserID", userID);
-                    con.Open();
+                connection.Open();
 
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(ordersTable);
-                    }
+                // Fetch orders data
+                string ordersQuery = "SELECT * FROM [Order] WHERE UserID = @UserID";
+                using (SqlCommand ordersCommand = new SqlCommand(ordersQuery, connection))
+                {
+                    ordersCommand.Parameters.AddWithValue("@UserID", userID);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(ordersCommand);
+                    DataTable ordersTable = new DataTable();
+                    adapter.Fill(ordersTable);
+
+                    return ordersTable;
                 }
             }
-
-            return ordersTable;
         }
     }
 }

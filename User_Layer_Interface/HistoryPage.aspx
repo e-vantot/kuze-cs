@@ -19,51 +19,51 @@
         }
 
         /*Nav Bar*/
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
+        }
 
-.navbar p{
-    color:darkslateblue;
-    font-size: 30px;
-    font-weight: 600;
-    padding:0 auto;
-    margin: 0 auto;
-}
+            .navbar p {
+                color: darkslateblue;
+                font-size: 30px;
+                font-weight: 600;
+                padding: 0 auto;
+                margin: 0 auto;
+            }
 
-.navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
+        .navbar-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
 
-.navbar-list li {
-     display: inline;
-     margin-left: 10px;
-     text-align: center;
-}
+            .navbar-list li {
+                display: inline;
+                margin-left: 10px;
+                text-align: center;
+            }
 
-.navbar-list li:first-child {
-    margin-left: 0;
- }
+                .navbar-list li:first-child {
+                    margin-left: 0;
+                }
 
-.navbar-list li a {
-    text-decoration: none;
-    color: #000;
-    font-weight:500;
-    padding: 8px 10px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s;
-}
+                .navbar-list li a {
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: 500;
+                    padding: 8px 10px;
+                    border-bottom: 2px solid transparent;
+                    transition: border-color 0.3s;
+                }
 
-  .navbar-list li a:hover {
-   border-color: #ffc107;
-   font-weight:600;
-  }
+                    .navbar-list li a:hover {
+                        border-color: #ffc107;
+                        font-weight: 600;
+                    }
 
 
         .title {
@@ -84,9 +84,9 @@
             margin-bottom: 20px;
         }
 
-        .order-header span, .header-item div {
-            font-size: 20px;
-        }
+            .order-header span, .header-item div {
+                font-size: 20px;
+            }
 
         .header-label {
             font-weight: bold;
@@ -103,10 +103,10 @@
             margin-right: 20px;
         }
 
-        .product-image img {
-            max-width: 100px;
-            max-height: 100px;
-        }
+            .product-image img {
+                max-width: 100px;
+                max-height: 100px;
+            }
 
         .order-num {
             display: flex;
@@ -127,18 +127,20 @@
         .header-item {
             text-align: center;
         }
-        .sub-label{
+
+        .sub-label {
             font-size: 15px;
         }
+
         .error-message {
             font-size: medium;
             font-weight: 500;
-            text-align:center;
+            text-align: center;
         }
 
         .footer {
             background-color: lightslategrey;
-            color:white;
+            color: white;
             padding: 30px;
             text-align: center;
             margin-top: 100px;
@@ -189,20 +191,20 @@
                 margin: 5px 0;
             }
 
-              .footer {
+            .footer {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-              }
+            }
 
-              .footer p {
-                flex-basis: 50%;
-              }
+                .footer p {
+                    flex-basis: 50%;
+                }
         }
     </style>
 </head>
 <body>
-     <!--Navigation Bar -->
+    <!--Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-logo">
             <p>KUZE</p>
@@ -220,92 +222,55 @@
         </div>
     </nav>
 
-    <!-- Page title -->
-    <div class="title">Your Orders</div>
-
-    <!-- Purchase history section -->
-    <div class="purchase-history">
-
-        <!-- Loop through the order details from the database -->
-
-                <div class="order-header">
-                    <div class="header-item">
-                        <span class="header-label">Order Number</span>
-                        <span class="sub-label"> Date:</span>
-                    </div>
-                    <div class="header-item">
-                        <span class="header-label">Number of Items:</span>
-                    </div>
-                    <div class="header-item">
-                        <span class="header-label">Total Amount:</span>
-                    </div>
-                    <div class="header-item">
-                        <span class="header-label">Delivery Status:</span>
-                        <span class="sub-label"> Shipping Option:  </span>
-                    </div>
+    <div class="container">
+        <div class="title">Your Orders</div>
+        <div class="purchase-history">
+            <div class="order-header">
+                <div class="header-item">
+                    <span class="header-label">Date</span>
                 </div>
-
-                <hr />
-
-        <!-- Order details section -->
-        <asp:Repeater ID="rptOrders" runat="server">
-            <ItemTemplate>
-                <div class="order-details">
-                    <div class="order-num">
-                        <span> <%# Eval("OrderID") %></span>
-                        <span> <%# Eval("Date") %> </span>
-                    </div>
-                    <div class="order-total">
-                        <span> <%# Eval("TotalAmount") %></span>
-                    </div>
-                    <div class="order-status">
-                        <span> <%# Eval("Status") %> </span>
-                        <span>  <%# Eval("Shipping") %></span>
+                <div class="header-item">
+                    <span class="header-label">Number of Items</span>
                 </div>
-            </ItemTemplate>
-        </asp:Repeater>
-        <asp:Label ID="lblNoOrdersFound" runat="server" class="error-message" Visible="false"> You have no orders yet! Browse our products to shop now.</asp:Label>
-
+                <div class="header-item">
+                    <span class="header-label">Total Amount</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Shipping Option</span>
+                </div>
+                <div class="header-item">
+                    <span class="header-label">Delivery Status</span>
+                </div>
+            </div>
+            <hr />
+            <asp:Repeater ID="rptOrders" runat="server">
+                <ItemTemplate>
+                    <div class="order-details">
+                        <div class="order-num">
+                            <span><%# Eval("Date") %></span>
+                        </div>
+                        <div class="order-num">
+                            <span><%# Eval("Items") %></span>
+                        </div>
+                        <div class="order-total">
+                            <span><%# Eval("TotalAmount") %></span>
+                        </div>
+                        <div class="order-status">
+                            <span><%# Eval("Shipping") %></span>
+                        </div>
+                        <div class="order-status">
+                            <span><%# Eval("Status") %></span>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:Label ID="lblNoOrdersFound" runat="server" CssClass="error-message" Visible="false">You have no orders yet! Browse our products to shop now.</asp:Label>
+        </div>
+        <asp:Label ID="lblMessage" runat="server" CssClass="error-message" Visible="false">Please log in to view your orders.</asp:Label>
     </div>
-
-    <asp:Label ID="lblMessage" runat="server" class="error-message" Visible="false">Please log in to view your orders.</asp:Label>
-
-        <!-- Order details section -->
-        <!--<div class="order-details">
-            <div class="order-num">
-                <span class="product-name">T-shirt Name</span>
-                <span class="product-size">Size: M</span>
-            </div>
-            <div class="order-date">
-                $20.00
-            </div>
-            <div class="order-status">
-                $20.00
-            </div>
-        </div> -->
-
-               <!-- <div class="order-num">
-                        <%# Eval("OrderID") %>
-                    </div>
-                    <div class="order-date">
-                        <%# Eval("Date", "{0:d}") %>
-                    </div>
-                    <div class="order-status">
-                        <%# Eval("Items") %>
-                    </div>
-                    <div class="order-status">
-                        <%# Eval("TotalAmount") %>
-                    </div>
-                    <div class="order-status">
-                        <%# Eval("Status") %>
-                    </div> -->
-
-        <!-- JavaScript file -->
-        <script src="scripts.js"></script>
-
-        <!--Footer--> 
-        <footer class="footer">
-            <p>© 2023 KUZE by ekoism. All rights reserved.</p>
-        </footer>
+    <script src="scripts.js"></script>
+    <footer class="footer">
+        <p>© 2023 KUZE by ekoism. All rights reserved.</p>
+    </footer>
 </body>
 </html>

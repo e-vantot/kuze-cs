@@ -71,6 +71,9 @@
             <div class="checkout-btn">
                 <asp:Button ID="btnCheckout" runat="server" Text="C H E C K O U T" OnClick="btnCheckout_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#088434" ForeColor="White" Height="45px" Width="221px" />
             </div>
+            <div class="checkout-btn">
+                <asp:Button ID="btnClear" runat="server" Text="C L E A R   C A R T" OnClick="btnClearShopping_Click" Font-Bold="True" Font-Names="Calibri" BackColor="#FF0000" ForeColor="White" Height="45px" Width="221px" />
+            </div>
             <% }
                 else
                 { %>
